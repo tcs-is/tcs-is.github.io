@@ -118,8 +118,8 @@
       botConnection.activity$
         .filter(function (activity) {
           console.log("A: ",activity);
-          console.log((!activity.entities || activity.entities.length == 0) && activity.from == bot);
-          return activity.from == bot;
+          console.log(activity.entities == undefined && activity.from == bot);
+          return activity.from.id == bot.id;
         })
         .subscribe(function (activity) {
           console.log("B: ",activity);
