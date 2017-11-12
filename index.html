@@ -123,6 +123,13 @@
         })
         .subscribe(function (activity) {
           console.log("B: ",activity);
+        var entityObj = { isReadyToPlay:true,
+                         data:{},
+                         text:activity.text,
+                         locale:"en-GB",
+                         onSpeakingStarted:null}
+        speechOptions.speechSynthesizer._requestQueue.push(entityObj);
+        
         });
 
       function changeBackgroundColor(newColor) {
