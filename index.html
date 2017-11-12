@@ -94,7 +94,7 @@
         var isSpeaking =  speechOptions.speechSynthesizer._isPlaying;
         if(isSpeaking)
         {
-                 console.log(speechOptions.speechSynthesizer);
+                 console.log(JSON.stringify(speechOptions.speechSynthesizer._requestQueue));
        console.log(speechOptions.speechRecognizer);
                 document.getElementById("speaking-gif").style.display = 'block';
         }
