@@ -88,6 +88,8 @@
                     voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
                 })
         }
+      
+      setInterval(function(){ console.log(speechOptions.speechSynthesizer.speaking);},100)
 
       var botConnection = new BotChat.DirectLine({
         secret: 'WaiaMm857ho.cwA.hYE.AixkjufX_BarSomPDTpW_s1we1ZMFFaTOfonlgxIVWQ',
