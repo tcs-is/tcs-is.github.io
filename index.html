@@ -118,7 +118,8 @@
       botConnection.activity$
         .filter(function (activity) {
           console.log("A: ",activity);
-          return (!activity.entities || activity.entities.length == 0) && activity.from == bot;
+          console.log((!activity.entities || activity.entities.length == 0) && activity.from == bot);
+          return activity.from == bot;
         })
         .subscribe(function (activity) {
           console.log("B: ",activity);
