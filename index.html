@@ -118,13 +118,10 @@
       botConnection.activity$
         .filter(function (activity) {
           console.log("A: ",activity);
-          return activity.type === 'event' && activity.name === 'changeBackground';
+          return (!activity.entities || activity.entities.length == 0) && activity.from == bot;
         })
         .subscribe(function (activity) {
           console.log("B: ",activity);
-          console.log('"changeBackground" received with value: ' + activity.value);
-          document.getElementById("speaking-gif").style.display = "block";
-          changeBackgroundColor(activity.value);
         });
 
       function changeBackgroundColor(newColor) {
@@ -146,3 +143,11 @@
     </script>
   </body>
 </html>
+<!--
+Extra: 
+Filter: (activity.type === 'event' && activity.name === 'changeBackground') ||
+Subscribe: 
+          console.log('"changeBackground" received with value: ' + activity.value);
+          document.getElementById("speaking-gif").style.display = "block";
+          changeBackgroundColor(activity.value);
+-->
