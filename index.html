@@ -46,6 +46,10 @@
         position: relative;
         width: 460px;
       }
+      
+      #speaking-gif{
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -55,7 +59,7 @@
     </section>
 
     <div id="BotChatGoesHere"></div>
-    <iframe src="https://giphy.com/embed/HRAV642Q1ONvW" width="480" height="411" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/hg-HRAV642Q1ONvW">via GIPHY</a></p>
+    <iframe id="speaking-gif" src="https://giphy.com/embed/HRAV642Q1ONvW" width="480" height="411" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/hg-HRAV642Q1ONvW">via GIPHY</a></p>
     <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
 
     <script>
@@ -93,6 +97,7 @@
         .subscribe(function (activity) {
           console.log("B: ",activity);
           console.log('"changeBackground" received with value: ' + activity.value);
+          document.getElementById("speaking-gif").style.display = "block";
           changeBackgroundColor(activity.value);
         });
 
