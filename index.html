@@ -87,9 +87,11 @@
 
       botConnection.activity$
         .filter(function (activity) {
+          console.log("A: ",activity);
           return activity.type === 'event' && activity.name === 'changeBackground';
         })
         .subscribe(function (activity) {
+          console.log("B: ",activity);
           console.log('"changeBackground" received with value: ' + activity.value);
           changeBackgroundColor(activity.value);
         });
