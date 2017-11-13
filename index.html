@@ -86,6 +86,7 @@ web.addMessage("Hello I am Eva  How may I help?", "", "", "");
 web.processMessages();
 </script>
     <script>
+      var canListen = true;
       var params = BotChat.queryParams(location.search);
 
       var user = {
@@ -100,6 +101,11 @@ web.processMessages();
       console.log("WEB: ",web);
       console.log("SDK: ",sdk);
       window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
+      
+      web.ended = function() {
+        console.log("WEB ENDED");
+        canListen = true;
+      }
       
       var speechOptions = {
             speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
@@ -150,6 +156,7 @@ web.processMessages();
 //                          text:activity.text,
 //                          locale:"en-GB",
 //                          onSpeakingStarted:null};
+        canListen = false;
         web.addMessage(message, "", "", "");
         web.processMessages();
         
@@ -174,8 +181,11 @@ web.processMessages();
     </script>
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script>
-      setInterval(function(){
-      $('.wc-mic').trigger("click"); },8000); //look for records every one second
+      setInterval(function(){ 
+        if(canListen){
+          $('.wc-mic').trigger("click"); 
+        }
+      },8000); //look for records every one second
     </script>
   </body>
 </html>
