@@ -50,10 +50,6 @@
         margin: 10px;
       }
       
-      #avatar-avatar-video-div{
-        display: none !important;
-      }
-      
       #speaking-gif{
         display: none;
       }
@@ -173,10 +169,10 @@ web.processMessages();
           });
       };
     </script>
-    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/core.js"></script>
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script>
-      $('.wc-mic').trigger("click")
+      setInterval(function(){
+      $('.wc-mic').trigger("click"); },1000); //look for records every one second
     </script>
   </body>
 </html>
