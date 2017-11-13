@@ -81,26 +81,26 @@
       var speechOptions = {
             speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
 
-            speechSynthesizer: new CognitiveServices.SpeechSynthesizer(
-                {
-                    subscriptionKey: '969780dbeab8445fb8dc405016a315e2',
-                    gender: CognitiveServices.SynthesisGender.Female,
-                    voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
-                })
+//             speechSynthesizer: new CognitiveServices.SpeechSynthesizer(
+//                 {
+//                     subscriptionKey: '969780dbeab8445fb8dc405016a315e2',
+//                     gender: CognitiveServices.SynthesisGender.Female,
+//                     voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
+//                 })
         }
       
       
-      setInterval(function(){
-        var isSpeaking =  speechOptions.speechSynthesizer._isPlaying;
-        if(isSpeaking)
-        {
-                 console.log(JSON.stringify(speechOptions.speechSynthesizer._requestQueue));
-       console.log(speechOptions.speechRecognizer);
-                document.getElementById("speaking-gif").style.display = 'block';
-        }
-        else
-          document.getElementById("speaking-gif").style.display = 'none';
-      },100)
+//       setInterval(function(){
+//         var isSpeaking =  speechOptions.speechSynthesizer._isPlaying;
+//         if(isSpeaking)
+//         {
+//                  console.log(JSON.stringify(speechOptions.speechSynthesizer._requestQueue));
+//        console.log(speechOptions.speechRecognizer);
+//                 document.getElementById("speaking-gif").style.display = 'block';
+//         }
+//         else
+//           document.getElementById("speaking-gif").style.display = 'none';
+//       },100)
 
       var botConnection = new BotChat.DirectLine({
         secret: '3h8VQ2panyw.cwA.7p4.QV97cGLXWebGc0cNtZzCM8X1_6u5AypYukmX7myAw_I',
