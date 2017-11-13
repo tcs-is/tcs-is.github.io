@@ -59,7 +59,7 @@
     </section> -->
 
     <div id="BotChatGoesHere"></div>
-    <iframe id="speaking-gif" src="https://giphy.com/embed/HRAV642Q1ONvW" width="480" height="411" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/hg-HRAV642Q1ONvW">via GIPHY</a></p>
+<!--     <iframe id="speaking-gif" src="https://giphy.com/embed/HRAV642Q1ONvW" width="480" height="411" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/hg-HRAV642Q1ONvW">via GIPHY</a></p> -->
     <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
     <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
     
@@ -137,7 +137,7 @@ web.processMessages();
           return activity.from.id == bot.id;
         })
         .subscribe(function (activity) {
-          console.log("B: ",activity);
+          console.log("B: ",JSON.stringify(activity));
 //         var entityObj = { isReadyToPlay:true,
 //                          data:{},
 //                          text:activity.text,
