@@ -53,6 +53,10 @@
       #speaking-gif{
         display: none;
       }
+      
+      #avatar-avatar-canvas-div{
+        padding-bottom: 20px;
+      }
     </style>
   </head>
   <body>
@@ -93,7 +97,8 @@ web.processMessages();
         id: "TestBot101117qna5",
         name: "TestBot101117qna5"
       };
-
+      console.log("WEB: ",web);
+      console.log("SDK: ",sdk);
       window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
       
       var speechOptions = {
@@ -135,8 +140,6 @@ web.processMessages();
 
       botConnection.activity$
         .filter(function (activity) {
-          console.log("A: ",activity);
-          console.log(activity.entities == undefined && activity.from == bot);
           return activity.from.id == bot.id;
         })
         .subscribe(function (activity) {
