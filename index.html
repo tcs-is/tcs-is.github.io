@@ -137,7 +137,7 @@ web.processMessages();
           return activity.from.id == bot.id;
         })
         .subscribe(function (activity) {
-          var message = JSON.stringify(activity);
+          var message = activity.text;
           message = message.split('\n ').join('\n\n');
 //         var entityObj = { isReadyToPlay:true,
 //                          data:{},
