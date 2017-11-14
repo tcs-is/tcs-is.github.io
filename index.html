@@ -48,48 +48,55 @@
 </head>
 
 <body>
-
     <div id="BotChatGoesHere"></div>
-    
-    <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+        <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
     <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    
+    <!-- Below import and intialisation is from botlibre -->
+    <script type='text/javascript' src="https://www.botlibre.com/scripts/sdk.js"></script>
+    <script type='text/javascript'>
+        SDK.applicationId = "8084411693033336948";
+        var sdk = new SDKConnection();
+        var web = new WebAvatar();
+        web.connection = sdk;
+        web.avatar = "780622";
+        web.voice = "";
+        web.voiceMod = "";
+        web.width = "650";
+        web.height = "630";
+        web.createBox();
+        web.addMessage("Hello I am Eva.  How may I assist you?", "", "", "");
+        web.processMessages();
+    </script>
     <script>
         var canListen = true; //this object will be used to toggle mic. is CanListen is true, turn on; else turn off.
         var params = BotChat.queryParams(location.search);
-
         //User object, is the sender
         var user = {
             id: params['userid'] || 'userid',
             name: params['username'] || 'username'
         };
-
         //Bot object, is the receiver
         var bot = {
             id: "TestBot101117qna5",
             name: "TestBot101117qna5"
         };
         window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
-
         //This function will be called when the avatar has ended speaking.
         web.ended = function () {
             console.log("WEB ENDED");
             canListen = true;
         }
-
         //SpeechOptions has a speechRecognizer and a SpeechSynthesizer.
         //For the current situation, we are not using SpeechSynthesizer. For example please refer to #1 below.
         var speechOptions = {
             speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
         }
-
         //Connecting with the TestBot101117qna5 BotService
         var botConnection = new BotChat.DirectLine({
             secret: '3h8VQ2panyw.cwA.7p4.QV97cGLXWebGc0cNtZzCM8X1_6u5AypYukmX7myAw_I',
             webSocket: params['webSocket'] && params['webSocket'] === 'true' // defaults to true
         });
-
         //Instantiating the BotChat application
         BotChat.App({
             bot: bot,
@@ -98,7 +105,6 @@
             user: user,
             speechOptions: speechOptions
         }, document.getElementById('BotChatGoesHere'));
-
         //Listening on the any activity happening with the chat such as message send/received.
         botConnection.activity$
             .filter(function (activity) {
@@ -110,9 +116,7 @@
                 canListen = false;
                 web.addMessage(message, "", "", "");
                 web.processMessages();
-
             });
-
         //This is a helper method to send a message as a Bot.
         function postButtonMessage() {
             botConnection
@@ -126,7 +130,6 @@
                     console.log('"buttonClicked" sent');
                 });
         };
-
         //Every eight second, check if we can turn the mic on.
         setInterval(function () {
             if (canListen) {
