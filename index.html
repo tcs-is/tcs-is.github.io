@@ -12,41 +12,37 @@
     <style>
         .example {
             float: left;
-            margin: auto;
+            margin-right: 0px;
             width: 300px;
-            bottom: 100px;
         }
-
         .example>h2 {
             font-family: 'Segoe UI';
         }
-
         #BotChatGoesHere {
             border: 0px solid #333;
+            float: left;
             height: 300px;
             position: relative;
             width: 620px;
-            top: 700px;
+            bottom: 0;
             right: 0;
-            margin: auto;
+            margin: 30px;
+            padding-bottom: 300px
         }
-
         #speaking-gif {
             display: none;
         }
-
         #avatar-avatar-canvas-div {
-           margin: auto;
+           
+            padding-left: -30px;
         }
         #imagelogo{
-            position: relative;
-            bottom: 10px;   
-            margin: auto;
+            padding-bottom: 10px;   
         }
         
     </style>
 </head>
-    
+
 <body>
     <div id="BotChatGoesHere"></div>
         <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
