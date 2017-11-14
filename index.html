@@ -12,33 +12,42 @@
     <style>
         .example {
             float: left;
-            margin-right: 20px;
+            margin:auto;
             width: 300px;
+            bottom: 100px;
         }
         .example>h2 {
             font-family: 'Segoe UI';
         }
         #BotChatGoesHere {
-            border: 1px solid #333;
-            float: left;
+            border: 0px solid #333;
             height: 300px;
-            position: absolute;
-            width: 460px;
-            bottom: 0;
+            position: relative;
+            width: 620px;
+            top: 700px;
             right: 0;
-            margin: 10px;
+            margin: auto;
         }
         #speaking-gif {
             display: none;
         }
         #avatar-avatar-canvas-div {
-            padding-bottom: 20px;
+            margin: auto;
+        }
+        
+        #imagelogo{
+            position: relative;
+            bottom: 10px;
+            margin: auto;
         }
     </style>
 </head>
 
 <body>
     <div id="BotChatGoesHere"></div>
+    <div di="imagelogo">
+		<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1280px-Tata_Consultancy_Services_Logo.svg.png" height=200px alt="tata logo">
+    </div>
     <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
     <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -56,7 +65,7 @@
         web.width = "250";
         web.height = "300";
         web.createBox();
-        web.addMessage("Hello I am Eva  How may I help?", "", "", "");
+        web.addMessage("Hello I am Eva. How may I assist you?", "", "", "");
         web.processMessages();
     </script>
     <script>
