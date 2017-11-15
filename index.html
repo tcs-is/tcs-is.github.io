@@ -126,7 +126,9 @@ Powered by: TATA Consultancy Services
                 var detectNumbers = activity.text.split(' ');
                 detectNumbers.forEach((el) => {
                     if(!isNaN(el)){
-                        console.log("found number: ",el);
+                        for(var i=0; i<el.length(); i++){
+                            console.log(el[i]);
+                        }
                     }
                 });
                 canListen = false;
