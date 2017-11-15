@@ -21,31 +21,59 @@
         
         @media all and (orientation:portrait){
             
-        #BotChatGoesHere {
-            border: 0px solid #333;
-            height: 300px;
-            position: relative;
-            width: 800px;
-            top: 950px;
-            right: 0;
-            margin: auto;
-        }
-        #speaking-gif {
-            display: none;
-        }
+            #BotChatGoesHere {
+                border: 0px solid #333;
+                height: 300px;
+                position: relative;
+                width: 800px;
+                top: 950px;
+                right: 0;
+                margin: auto;
+            }
+            #speaking-gif {
+                display: none;
+            }
         
-        #avatar-avatarbox{
-            top: 10px;
-            margin: auto;
-            left: 70px;
-            right: 0;
-            bottom:500px;
-        }
+            #avatar-avatarbox{
+                top: 10px;
+                margin: auto;
+                left: 70px;
+                right: 0;
+                bottom:500px;
+            }
         
-        #avatar-avatar-canvas-div {
-            margin: auto;
-        }
+            #avatar-avatar-canvas-div {
+                margin: auto;
+            }
             
+        }
+        
+        @media all and (orientation:portrait){
+            #BotChatGoesHere {
+                border: 0px solid #333;
+                float: left;
+                height: 300px;
+                position: absolute;
+                width: 620px;
+                bottom: 0;
+                right: 0;
+                margin: 30px;
+            }
+            #speaking-gif {
+                display: none;
+            }
+            #avatar-avatar-canvas-div {         
+                padding-left: 10px;
+            }
+            #imagelogo{
+                padding-top: 30px;
+		        padding-left : 700px;  
+            }
+	        #imagelogo{
+	            float:right;
+                margin-right: 125px;
+                height: 200px;
+                background:url('https://upload.wikimedia.org/wikipedia/en/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1280px-Tata_Consultancy_Services_Logo.svg.png') right no-repeat;
         }
         
         #footer { 
@@ -59,8 +87,9 @@
 </head>
 
 <body>
-    <div id="BotChatGoesHere">
-    </div>
+    <div id="BotChatGoesHere"></div>
+    
+    <div id="imagelogo"></div>
     <div id="footer" align="center">
        Powered by: TATA Consultancy Services
     </div>
