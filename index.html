@@ -123,6 +123,12 @@ Powered by: TATA Consultancy Services
             .subscribe(function (activity) {
                 var message = activity.text;
                 message = message.split('\n ').join('\n\n');
+                var detectNumbers = activity.text.split(' ');
+                detectNumbers.forEach((el) => {
+                    if(!isNaN(el)){
+                        console.log("found number: ",el);
+                    }
+                });
                 canListen = false;
                 web.addMessage(message, "", "", "");
                 web.processMessages();
