@@ -121,9 +121,23 @@ Powered by: TATA Consultancy Services
                 return activity.from.id == bot.id;
             })
             .subscribe(function (activity) {
-                var message = activity.text;
-                message = message.split('\n ').join('\n\n');
-                var detectNumbers = activity.text.split(' ');
+//                 var message = activity.text;
+//                 message = message.split('\n ').join('\n\n');
+//                 var detectNumbers = activity.text.split(' ');
+//                 detectNumbers.forEach((el) => {
+//                     if(!isNaN(el)){
+//                         var newEl = '';
+//                         for(var i=0; i<el.length; i++){
+//                             newEl += el[i]+' ';
+//                         }
+//                         el = newEl;
+//                     }
+//                 });
+//                 message = detectNumbers.join(' ');
+//                 console.log(message);
+            var msg = activity.text;
+var detectNumbers = msg.split(' ');
+var newMsg = [];
                 detectNumbers.forEach((el) => {
                     if(!isNaN(el)){
                         var newEl = '';
@@ -132,8 +146,10 @@ Powered by: TATA Consultancy Services
                         }
                         el = newEl;
                     }
+                    newMsg.push(el);
                 });
-                message = detectNumbers.join(' ');
+                console.log(newMsg);
+                var message = newMsg.join(' ');
                 console.log(message);
                 canListen = false;
                 web.addMessage(message, "", "", "");
