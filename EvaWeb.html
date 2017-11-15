@@ -106,7 +106,7 @@
         var speechOptions = {
             speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
         }
-        //Connecting with the TestBot101117qna5 BotService
+        //Connecting with the AskEva BotService
         var botConnection = new BotChat.DirectLine({
             secret: '0r9ePQW-L7E.cwA.CPs.hYo4-TXhWcjoujrWQDZEq_Jl1J4MiPh70irCOELOOp0',
             webSocket: params['webSocket'] && params['webSocket'] === 'true' // defaults to true
@@ -139,11 +139,11 @@
 //                 });
 //                 message = detectNumbers.join(' ');
 //                 console.log(message);
-            var msg = activity.text;
-var detectNumbers = msg.split(' ');
-var newMsg = [];
-                detectNumbers.forEach((el) => {
-                    if(!isNaN(el)){
+                   var msg = activity.text;
+                   var detectNumbers = msg.split(' ');
+                   var newMsg = [];
+                   detectNumbers.forEach((el) => {
+                   if(!isNaN(el)){
                         var newEl = '';
                         for(var i=0; i<el.length; i++){
                             newEl += el[i]+' ';
