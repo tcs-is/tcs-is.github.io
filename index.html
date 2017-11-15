@@ -126,11 +126,15 @@ Powered by: TATA Consultancy Services
                 var detectNumbers = activity.text.split(' ');
                 detectNumbers.forEach((el) => {
                     if(!isNaN(el)){
+                        var newEl = '';
                         for(var i=0; i<el.length; i++){
-                            console.log(el[i]);
+                            newEl += el[i]+' ';
                         }
+                        el = newEl;
+                        console.log(el);
                     }
                 });
+                
                 canListen = false;
                 web.addMessage(message, "", "", "");
                 web.processMessages();
