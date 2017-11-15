@@ -1,685 +1,197 @@
-/*-----------------------------------------------------------------------------
-A simple echo bot for the Microsoft Bot Framework. 
------------------------------------------------------------------------------*/
+<!DOCTYPE html>
 
-var restify = require('restify');
-var builder = require('botbuilder');
-var builder_cognitiveservices = require("botbuilder-cognitiveservices");
+<html>
 
-// Setup Restify Server
-var server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, function () {
-    console.log('%s listening to %s', server.name, server.url);
-});
-  
-// Create chat connector for communicating with the Bot Framework Service
-var connector = new builder.ChatConnector({
-    appId: process.env.MicrosoftAppId,
-    appPassword: process.env.MicrosoftAppPassword,
-    stateEndpoint: process.env.BotStateEndpoint,
-    openIdMetadata: process.env.BotOpenIdMetadata
-});
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Ask Eva</title>
 
-// Listen for messages from users 
-server.post('/api/messages', connector.listen());
+    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
 
-/*----------------------------------------------------------------------------------------
-* Bot Storage: This is a great spot to register the private state storage for your bot. 
-* We provide adapters for Azure Table, CosmosDb, SQL Azure, or you can implement your own!
-* For samples and documentation, see: https://github.com/Microsoft/BotBuilder-Azure
-* ---------------------------------------------------------------------------------------- */
+    <style>
+        .example {
+            margin: auto;
+            width: 300px;
+            bottom: 100px;
+        }
+        .example>h2 {
+            font-family: 'Segoe UI';
+        }
+        #BotChatGoesHere {
+            border: 0px solid #333;
+            height: 300px;
+            position: relative;
+            width: 800px;
+            top: 950px;
+            right: 0;
+            margin: auto;
+        }
+        #speaking-gif {
+            display: none;
+        }
+        
+        #avatar-avatarbox{
+            top: 10px;
+            margin: auto;
+            left: 70px;
+            right: 0;
+            bottom:500px;
+        }
+        
+        #avatar-avatar-canvas-div {
+            margin: auto;
+        }
+        #footer { 
+            position:absolute;
+            bottom: 2px;
+            width:100%;
+            color: blue;
+        }
+        
+    </style>
+</head>
 
-// Create your bot with a function to receive messages from the user
-var bot = new builder.UniversalBot(connector, function (session) {
-    session.beginDialog('qna');
-});
-
-
-var recognizer = new builder_cognitiveservices.QnAMakerRecognizer({
-    knowledgeBaseId: process.env.QnAKnowledgebaseId,
-    subscriptionKey: process.env.QnASubscriptionKey
-});
-
-var basicQnAMakerDialog = new builder_cognitiveservices.QnAMakerDialog({
-    recognizers: [recognizer],
-    defaultMessage: 'Sorry, I do not understand. Could you repeat your question?',
-    qnaThreshold: 0.4
-}
-    );
-
-
-bot.dialog('qna', basicQnAMakerDialog);
-//<--------------------------------------------------START CHANGE PASSWORD FLOW ----------------------------------------------->
-bot.dialog('changePassword', [
-    function (session, args) {
-        if (args && args.reprompt) {
-            builder.Prompts.choice(session, "Wrong Input! Which password you will like to reset?", "Ultimatix|Web Mail|Domain account|Lotus notes|Exit");
-        } else {
-            var str = session.message.text;
-            var strp = str.split(" ");
-            console.log(strp);
-            if (strp.length < 3)
-                builder.Prompts.choice(session, "Which password you will like to reset?", "Ultimatix|Web mail|Domain account|Lotus notes|Exit");
-            else {
-                session.beginDialog('qna');
-                session.clearDialogStack();
+<body>
+    <div id="BotChatGoesHere">
+    </div>
+    <div id="footer" align="center">
+Powered by: TATA Consultancy Services
+        </div>
+<!--     <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script> -->
+    <script src="./chatbot.js"></script>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <!-- Below import and intialisation is from botlibre -->
+    <script type='text/javascript' src="https://www.botlibre.com/scripts/sdk.js"></script>
+    <script type='text/javascript'>
+        //old application ID: 8084411693033336948
+        //old application ID: 3129618583901271656
+        //new application ID: 2454448050889432234
+        //new application ID: 6278325859819290255
+        SDK.applicationId = "2454448050889432234";
+        var sdk = new SDKConnection();
+        var web = new WebAvatar();
+        web.connection = sdk;
+        web.avatar = "780622";
+        web.voice = "";
+        web.voiceMod = "";
+        web.width = "800";
+        web.height = "900";
+        web.createBox();
+        web.addMessage("Hello I am Eva. How may I assist you?", "", "", "");
+        web.processMessages();
+    </script>
+    <script>
+        var canListen = true; //this object will be used to toggle mic. is CanListen is true, turn on; else turn off.
+        var params = BotChat.queryParams(location.search);
+        //User object, is the sender
+        var user = {
+            id: params['userid'] || 'userid',
+            name: params['username'] || 'You'
+        };
+        //Bot object, is the receiver
+        var bot = {
+            id: "TestBot101117qna5",
+            name: "Eva"
+        };
+        window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
+        //This function will be called when the avatar has ended speaking.
+        web.ended = function () {
+            console.log("WEB ENDED");
+            canListen = true;
+        }
+        //SpeechOptions has a speechRecognizer and a SpeechSynthesizer.
+        //For the current situation, we are not using SpeechSynthesizer. For example please refer to #1 below.
+        var speechOptions = {
+            speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
+        }
+        //Connecting with the TestBot101117qna5 BotService
+        var botConnection = new BotChat.DirectLine({
+            secret: '3h8VQ2panyw.cwA.7p4.QV97cGLXWebGc0cNtZzCM8X1_6u5AypYukmX7myAw_I',
+            webSocket: params['webSocket'] && params['webSocket'] === 'true' // defaults to true
+        });
+        //Instantiating the BotChat application
+        BotChat.App({
+            bot: bot,
+            botConnection: botConnection,
+            // locale: 'es-es', // override locale to Spanish
+            user: user,
+            speechOptions: speechOptions
+        }, document.getElementById('BotChatGoesHere'));
+        //Listening on the any activity happening with the chat such as message send/received.
+        botConnection.activity$
+            .filter(function (activity) {
+                return activity.from.id == bot.id;
+            })
+            .subscribe(function (activity) {
+//                 var message = activity.text;
+//                 message = message.split('\n ').join('\n\n');
+//                 var detectNumbers = activity.text.split(' ');
+//                 detectNumbers.forEach((el) => {
+//                     if(!isNaN(el)){
+//                         var newEl = '';
+//                         for(var i=0; i<el.length; i++){
+//                             newEl += el[i]+' ';
+//                         }
+//                         el = newEl;
+//                     }
+//                 });
+//                 message = detectNumbers.join(' ');
+//                 console.log(message);
+            var msg = activity.text;
+var detectNumbers = msg.split(' ');
+var newMsg = [];
+                detectNumbers.forEach((el) => {
+                    if(!isNaN(el)){
+                        var newEl = '';
+                        for(var i=0; i<el.length; i++){
+                            newEl += el[i]+' ';
+                        }
+                        el = newEl;
+                    }
+                    newMsg.push(el);
+                });
+                console.log(newMsg);
+                var message = newMsg.join(' ');
+                console.log(message);
+                canListen = false;
+                web.addMessage(message, "", "", "");
+                web.processMessages();
+            });
+        //This is a helper method to send a message as a Bot.
+        function postButtonMessage() {
+            botConnection
+                .postActivity({
+                    from: { id: 'me' },
+                    name: 'buttonClicked',
+                    type: 'event',
+                    value: ''
+                })
+                .subscribe(function (id) {
+                    console.log('"buttonClicked" sent');
+                });
+        };
+        //Every eight second, check if we can turn the mic on.
+        setInterval(function () {
+            //Set the auto voice recognisation to false.
+            //If you want to turn on, replace 'false' to 'canListen'
+            if (false) {
+                $('.wc-mic.inactive').trigger("click");
             }
-        }
-    },
-    function (session, results) {
-        if (results.response.score >= 0.9) {
-            var res = results.response.entity.toLowerCase();
-            var res2 = res.replace(/\s/g, '');
-            console.log(res2);
-        }
-        switch (res2) {
-            case "1":
-            case "ultimatix":
-                session.message.text = "How do I change my ultimatix password?";
-                session.beginDialog('qna');
-                break;
-            case "2":
-            case "webmail":
-                session.message.text = "How to change my webmail password?";
-                session.beginDialog('qna');
-                break;
-            case "3":
-            case "domainaccount":
-                session.message.text = "How do I change my global domain account management password?";
-                session.beginDialog('qna');
-                break;
-            case "4":
-            case "lotusnotes":
-                session.message.text = "How do I change my lotus notes password?";
-                session.beginDialog('qna');
-                break;
-            case "5":
-            case "exit":
-                session.message.text = "exit";
-                session.beginDialog('qna');
-                break;
-
-            default:
-                session.replaceDialog('changePassword', { reprompt: true });
-        }
-
-    }
-]).triggerAction({ matches: /(reset|change.*password)|^password$/i });
-
-//<--------------------------------------------------END CHANGE PASSWORD FLOW ----------------------------------------------->
-
-/*bot.dialog('update',[
-    function(session){
-        var str = session.message.text;
-        var strp = str.split(" ");
-        if(strp.length<3)
-            builder.Prompts.choice(session,"Which details you will like to change?","Work Location|Passport Details|Bank Details|Time sheet|Photo|Email ID|Group ID|Mail in db|Distribute list/groups|Shared mailbox");  
-        else{
-            session.beginDialog('qna');
-            session.clearDialogStack();
-        }
-        }
-     },
-    function(session,results){
-        
-        if(results.response.score>=0.9){
-            var res = results.response.entity.toLowerCase();
-            var res2 = res.replace(/\s/g,'');
-        }
-        //else{
-        //    session.clearDialogStack();
-        //}
-            
-        console.log("rest2 is "+res2);
-        
-        switch (res2) {
-            
-            case "worklocation":
-                session.message.text = "How to change work location?";
-                session.beginDialog('qna');
-                break;
-                
-            case "passportdetails":
-                session.message.text = "How do I update my passport details?";
-                session.beginDialog('qna');
-                break;
-                  
-            case "bankdetails":
-                session.message.text = "How do I update my bank details?";
-                session.beginDialog('qna');
-                break;
-           
-            case "timesheet":
-                session.message.text = "How do I update my time sheet?";
-                session.beginDialog('qna');
-                break;
-             
-            case "photo":
-                session.message.text = "How do I update my photo?";
-                session.beginDialog('qna');
-                break;
-            
-            case "emailid":
-                session.message.text = "How to change an email ID.";
-                session.beginDialog('qna');
-                break;
-            
-            case "groupid":
-                session.message.text = "How to modify the group ID or mail in DB?";
-                session.beginDialog('qna');
-                break;
-          
-            case "mailindb":
-                session.message.text = "How to modify the group ID or mail in DB?";
-                session.beginDialog('qna');
-                break;
-           
-            case "distributelist/groups":
-                session.message.text = "How to Modify the Distribution List/Groups and\nShared Mailbox.";
-                session.beginDialog('qna');
-                break;
-        
-            case "sharedmailbox":
-                session.message.text = "How to Modify the Distribution List/Groups and\nShared Mailbox.";
-                session.beginDialog('qna');
-                break;  
-                
-            default:
-                session.beginDialog('update');
-                console.log("entering default");
-                //session.clearDialogStack();
-                
-        }
-        session.clearDialogStack();
-    }
-]).triggerAction({matches: /detail$|details$/i});*/
-
-//<--------------------------------------------------START CONTACT FLOW ----------------------------------------------->
-bot.dialog('contact', [
-    function (session, args) {
-        if (args && args.reprompt) {
-            builder.Prompts.choice(session, "Wrong Input! Who do you like to contact?", "APAC IT team |Help desk|Administration department|Finance team|Exit");
-        } else {
-            builder.Prompts.choice(session, "Who do you like to contact?", "APAC IT team |Help desk|Administration department|Finance team|Exit");
-        }
-    },
-    function (session, results) {
-        if (results.response.score >= 0.9) {
-            var res = results.response.entity.toLowerCase();
-            var res2 = res.replace(/\s/g, '');
-        }
-        switch (res2) {
-            case "1":
-            case "apacitteam":
-                session.message.text = "What are the contact details for the APAC IT Team?";
-                session.beginDialog('qna');
-                break;
-            case "2":
-            case "helpdesk":
-                session.message.text = "What are the toll-free contact details for the Helpdesk Team?";
-                session.beginDialog('qna');
-                break;
-            case "3":
-            case "administrationdepartment":
-                session.message.text = "What are the contact details of the Administration Department";
-                session.beginDialog('qna');
-                break;
-            case "4":
-            case "financeteam":
-                session.message.text = "What is the contact details of the Finance Team";
-                session.beginDialog('qna');
-                break;
-            case "5":
-            case "exit":
-                session.message.text = "exit";
-                session.beginDialog('qna');
-                break;
-
-            default:
-                session.replaceDialog('contact', { reprompt: true });
-
-        }
-
-    }
-]).triggerAction({ matches: /contact$|contacts$/i });
-
-//<--------------------------------------------------END CONTACT FLOW ----------------------------------------------->
-
-//<--------------------------------------------------START SELECT CHANGE FLOW ----------------------------------------------->
-bot.dialog('change', [
-    function (session, args) {
-        if (args && args.reprompt) {
-            builder.Prompts.choice(session, "Wrong Input! Which do you like to change?","Password|Details|Exit");
-        } else {
-            builder.Prompts.choice(session, "Which do you like to change?","Password|Details|Exit");
-        }
-
-    },
-    function (session, results) {
-        if (results.response.score >= 0.9) {
-            var res = results.response.entity.toLowerCase();
-            var res2 = res.replace(/\s/g, '');
-        }
-        switch (res2) {
-            case "1":
-            case "password":
-                session.beginDialog('changePassword');
-                break;
-            case "2":
-            case "details":
-                session.beginDialog('updateDetails');
-                break;
-            case "3":
-            case "exit":
-                session.message.text = "exit";
-                session.beginDialog('qna');
-                break;
-            default:
-                session.replaceDialog('change', { reprompt: true });
-
-        }
-
-    }
-]).triggerAction({ matches: /change$/i });
-//<--------------------------------------------------END SELECT CHANGE FLOW ----------------------------------------------->
-
-//<--------------------------------------------------START UPDATE DETAILS FLOW ----------------------------------------------->
-bot.dialog('updateDetails', [
-    function (session, args) {
-        if (args && args.reprompt) {
-            builder.Prompts.choice(session, "Wrong Input! Which details you will like to change?", "Work location|Passport details|Bank details|Time sheet|Photo|Email ID|Group ID|Mail in db|Distribute list or groups|Shared mailbox|Exit");
-        } else {
-            var str = session.message.text;
-            var strp = str.split(" ");
-            if (strp.length < 3)
-                builder.Prompts.choice(session, "Which details you will like to change?", "Work location|Passport details|Bank Details|Time sheet|Photo|Email ID|Group ID|Mail in db|Distribute list or groups|Shared mailbox|Exit");
-            else {
-                session.beginDialog('qna');
-                session.clearDialogStack();
-            }
-        }
-    },
-    function (session, results) {
-        if (results.response.score >= 0.9) {
-            var res = results.response.entity.toLowerCase();
-            var res2 = res.replace(/\s/g, '');
-        }
-        console.log(res2);
-        switch (res2) {
-            case "1":
-            case "worklocation":
-                session.message.text = "How to change work location?";
-                session.beginDialog('qna');
-                break;
-
-            case "2":
-            case "passportdetails":
-                session.message.text = "How do I update my passport details?";
-                session.beginDialog('qna');
-                break;
-
-            case "3":
-            case "bankdetails":
-                session.message.text = "How do I update my bank details?";
-                session.beginDialog('qna');
-                break;
-
-            case "4":
-            case "timesheet":
-                session.message.text = "How do I update my time sheet?";
-                session.beginDialog('qna');
-                break;
-
-            case "5":
-            case "photo":
-                session.message.text = "How do I update my photo?";
-                session.beginDialog('qna');
-                break;
-
-            case "6":
-            case "emailid":
-                session.message.text = "How to change an email ID.";
-                session.beginDialog('qna');
-                break;
-
-            case "7":
-            case "groupid":
-                session.message.text = "How to modify the group ID or mail in DB?";
-                session.beginDialog('qna');
-                break;
-
-            case "8":
-            case "mailindb":
-                session.message.text = "How to modify the group ID or mail in DB?";
-                session.beginDialog('qna');
-                break;
-
-            case "9":
-            case "distributelist/groups":
-                session.message.text = "How to Modify the Distribution List/Groups and\nShared Mailbox.";
-                session.beginDialog('qna');
-                break;
-
-            case "10":
-            case "sharedmailbox":
-                session.message.text = "How to Modify the Distribution List/Groups and\nShared Mailbox.";
-                session.beginDialog('qna');
-                break;
-                
-            case "11":
-            case "exit":
-                session.message.text = "exit";
-                session.beginDialog('qna');
-                break;
-
-            default:
-                session.replaceDialog('updateDetails', { reprompt: true });
-                console.log("entering default");
-            //session.clearDialogStack();
-                
-        }
-
-    }
-
-]).triggerAction({ matches: /change details|change detail|^detail|^details|update details|update detail/i });
-//<--------------------------------------------------END UPDATE DETAILS FLOW ----------------------------------------------->
-//<--------------------------------------------------START HELP FLOW ----------------------------------------------->
-bot.dialog('help', [
-    function (session, args) {
-        if (args && args.reprompt) {
-            builder.Prompts.choice(session, "Which area do you need help?", "Change password|Lotus notes and web mail errors|Update details|Apply leave or claim|Check status|Unlock account|Contact|Raise Ticket|Exit");
-        } else {
-            builder.Prompts.choice(session, "Which area do you need help?", "Change password|Lotus notes and Web mail errors|Update details|Apply leave or claim|Check status|Unlock account|Contact|Raise Ticket|Exit");
-        }
-
-    },
-    function (session, results) {
-        console.log(results);
-        if (results.response.score >= 0.9) {
-            var res = results.response.entity.toLowerCase();
-            var res2 = res.replace(/\s/g, '');
-            console.log(res2);
-        }
-        switch (res2) {
-            case "1":
-            case "changepassword":
-                session.beginDialog('changePassword');
-                break;
-            case "2":
-            case "lotusnotesandwebmailerrors":
-                session.beginDialog('passwordErrors');
-                break;
-            case "3":
-            case "updatedetails":
-                session.beginDialog('updateDetails');
-                break;
-            case "4":
-            case "applyleaveorclaim":
-                session.beginDialog('ApplyLeave');
-                break;
-            case "5":
-            case "checkstatus":
-                session.beginDialog('checkStatus');
-                break;
-            case "6":
-            case "unlockaccount":
-                session.beginDialog('Unlock');
-                break;
-            case "7":
-            case "contact":
-                session.beginDialog('contact');
-                break;
-            case "8":
-            case "raiseticket":
-                session.beginDialog('raiseTicket');
-                break;
-            case "9":
-            case "exit":
-                session.message.text = "exit";
-                session.beginDialog('qna');
-                break;
-            default:
-                session.replaceDialog('help', { reprompt: true });
-
-        }
-
-    }
-]).triggerAction({ matches: /^help$|^helps$/i });
-
-
-//<--------------------------------------------------END HELP FLOW ----------------------------------------------->
-
-
-//<--------------------------------------------------START APPLY LEAVE FLOW ----------------------------------------------->
-bot.dialog('ApplyLeave', [
-    function (session, args) {
-        if (args && args.reprompt) {
-            builder.Prompts.choice(session, "Wrong Input! What do you like to apply for?", "Apply leave|Apply claim|Exit");
-        } else {
-            builder.Prompts.choice(session, "What do you like to apply for?", "Apply leave|Apply claim|Exit");
-        }
-
-    },
-    function (session, results) {
-        if (results.response.score >= 0.9) {
-            var res = results.response.entity.toLowerCase();
-            var res2 = res.replace(/\s/g, '');
-        }
-        switch (res2) {
-            case "1":
-            case "applyleave":
-                session.message.text = "How do I apply for leave?";
-                session.beginDialog('qna');
-                break;
-            case "2":
-            case "applyclaim":
-                session.message.text = "How do I apply for claim?";
-                session.beginDialog('qna');
-                break;
-            case "3":
-            case "exit":
-                session.message.text = "exit";
-                session.beginDialog('qna');
-                break;
-            default:
-                session.replaceDialog('ApplyLeave', { reprompt: true });
-
-        }
-
-    }
-]).triggerAction({ matches: /apply$|apply for$|apply leave or claim/i });
-
-//<--------------------------------------------------END APPLY LEAVE FLOW ----------------------------------------------->
-
-
-
-
-//<--------------------------------------------------START UNLOCK FLOW ----------------------------------------------->
-bot.dialog('Unlock', [
-    function (session, args) {
-        if (args && args.reprompt) {
-            builder.Prompts.choice(session, "Wrong Input! What do you want to unlock?", "Sametime password|Lotus notes account|Exit");
-        } else {
-            builder.Prompts.choice(session, "What do you want to unlock?", "Sametime password|Lotus notes account|Exit");
-        }
-
-    },
-    function (session, results) {
-        if (results.response.score >= 0.9) {
-            var res = results.response.entity.toLowerCase();
-            var res2 = res.replace(/\s/g, '');
-        }
-        switch (res2) {
-            case "1":
-            case "sametimepassword":
-                session.message.text = "How do I unlock my Sametime Password?";
-                session.beginDialog('qna');
-                break;
-            case "2":
-            case "lotusnotesaccount":
-                session.message.text = "How do I unlock my Lotus Notes account?";
-                session.beginDialog('qna');
-                break;
-            case "3":
-            case "exit":
-                session.message.text = "exit";
-                session.beginDialog('qna');
-                break;
-            default:
-                session.replaceDialog('Unlock', { reprompt: true });
-
-        }
-
-    }
-]).triggerAction({ matches: /unlock$|unlock account|unlock my account/i });
-
-//<--------------------------------------------------END UNLOCK FLOW ----------------------------------------------->
-
-//<--------------------------------------------------START CHECK STATUS FLOW ----------------------------------------------->
-bot.dialog('checkStatus', [
-    function (session, args) {
-        if (args && args.reprompt) {
-            builder.Prompts.choice(session, "Wrong Input! What do you want to check?", "Check my leave|Check my allocation|Check my claim|Check my payslips|Exit");
-        } else {
-            builder.Prompts.choice(session, "What do you want to check?", "Check my leave|Check my allocation|Check my claim|Check my payslips|Exit");
-        }
-
-    },
-    function (session, results) {
-        console.log(results);
-        if (results.response.score >= 0.9) {
-            var res = results.response.entity.toLowerCase();
-            var res2 = res.replace(/\s/g, '');
-            console.log(res2);
-        }
-        switch (res2) {
-            case "1":
-            case "checkmyleave":
-                session.message.text = "How do I check for my Leave/Claim Request?";
-                session.beginDialog('qna');
-                break;
-            case "2":
-            case "checkallocation":
-                session.message.text = "How do I check my Allocation?";
-                session.beginDialog('qna');
-                break;
-            case "3":
-            case "checkmyclaim":
-                session.message.text = "How do I check for my Leave/Claim Request?";
-                session.beginDialog('qna');
-                break;
-            case "4":
-            case "checkmypayslips":
-                session.message.text = "How do I check my payslips?";
-                session.beginDialog('qna');
-                break;
-            case "5":
-            case "exit":
-                session.message.text = "exit";
-                session.beginDialog('qna');
-                break;
-            default:
-                session.replaceDialog('checkStaus', { reprompt: true });
-
-        }
-
-    }
-]).triggerAction({ matches: /check.*status$|check$/i });
-
-//<--------------------------------------------------END CHECK STATUS FLOW ----------------------------------------------->
-
-//<--------------------------------------------------START PASSWORD ERRORS FLOW ----------------------------------------------->
-bot.dialog('passwordErrors', [
-    function (session, args) {
-        if (args && args.reprompt) {
-            builder.Prompts.choice(session, "Wrong Input! Which types of error did you encounter?", "Lotus notes different copy of password|Lotus notes password expired|Lotus notes over quota|Email delivery to an external domain failed|Exit");
-        } else {
-            builder.Prompts.choice(session, "Which types of error did you encounter?", "Lotus notes different copy of password|Lotus notes password expired|Lotus notes over quota|Email delivery to an external domain failed|Exit");
-        }
-    },
-    function (session, results) {
-        if (results.response.score >= 0.9) {
-            var res = results.response.entity.toLowerCase();
-            var res2 = res.replace(/\s/g, '');
-            console.log(res2);
-        }
-        switch (res2) {
-            case "1":
-            case "lotusnotesdifferentcopyofpassword":
-                session.message.text = "I am getting You have different copy of password error in Lotus Notes.";
-                session.beginDialog('qna');
-                break;
-            case "2":
-            case "lotusnotespasswordexpired":
-                session.message.text = "I am getting password expired error in Lotus Notes. How can I reset my Lotus Password?";
-                session.beginDialog('qna');
-                break;
-            case "3":
-            case "lotusnotesoverquota":
-                session.message.text = "I am getting an over quota error in my Lotus Notes?";
-                session.beginDialog('qna');
-                break;
-            case "4":
-            case "emaildeliverytoanexternaldomainfailed":
-                session.message.text = "My email delivery to an external domain stopped working.";
-                session.beginDialog('qna');
-                break;
-            case "5":
-            case "exit":
-                session.message.text = "exit";
-                session.beginDialog('qna');
-                break;
-
-            default:
-                session.replaceDialog('passwordErrors', { reprompt: true });
-        }
-
-    }
-]).triggerAction({ matches: /error$|errors$/i });
-
-//<--------------------------------------------------END PASSWORD ERRORS FLOW ----------------------------------------------->
-
-//<--------------------------------------------------START RAISE TICKET FLOW ----------------------------------------------->
-bot.dialog('raiseTicket', [
-    function (session, args) {
-        if (args && args.reprompt) {
-            builder.Prompts.choice(session, "Wrong Input! Which ticket or request do you want to raise?", "Global procurement system request|Global help desk ticket|Change request|Exit");
-        } else {
-            builder.Prompts.choice(session, "Which ticket or request do you want to raise?", "Global procurement system request|Global help desk ticket|Change request|Exit");
-        }
-    },
-    function (session, results) {
-        if (results.response.score >= 0.9) {
-            var res = results.response.entity.toLowerCase();
-            var res2 = res.replace(/\s/g, '');
-            console.log(res2);
-        }
-        switch (res2) {
-            case "1":
-            case "globalprocurementsystemrequest":
-                session.message.text = "How do I raise a GPS Request?";
-                session.beginDialog('qna');
-                break;
-            case "2":
-            case "globalhelpdeskticket":
-                session.message.text = "How do I raise a Global Helpdesk ticket?";
-                session.beginDialog('qna');
-                break;
-            case "3":
-            case "changerequest":
-                session.message.text = "How do I raise a change request?";
-                session.beginDialog('qna');
-                break;
-            case "4":
-            case "exit":
-                session.message.text = "exit";
-                session.beginDialog('qna');
-                break;
-
-            default:
-                session.replaceDialog('raiseTicket', { reprompt: true });
-        }
-
-    }
-]).triggerAction({ matches: /(raise ticket$)|(raise request)|(raise a ticket)|(raise a request)/i });
-//<--------------------------------------------------END RAISE TICKET FLOW ----------------------------------------------->
+        }, 8000);
+    </script>
+   
+</body>
+</html>
+<!--
+Note:
+#1: 
+var speechOptions = {
+speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
+speechSynthesizer: new CognitiveServices.SpeechSynthesizer({
+    subscriptionKey: '969780dbeab8445fb8dc405016a315e2',
+    gender: CognitiveServices.SynthesisGender.Female,
+    voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
+    })
+} ->
