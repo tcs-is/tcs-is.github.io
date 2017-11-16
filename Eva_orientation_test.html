@@ -20,8 +20,38 @@
         .example>h2 {
             font-family: 'Segoe UI';
         }
+        @media all and (orientation:portrait){
+            
+            #BotChatGoesHere {
+                border: 0px solid #333;
+                height: 300px;
+                position: relative;
+                width: 800px;
+                top: 950px;
+                right: 0;
+                margin: auto;
+            }
+            #speaking-gif {
+                display: none;
+            }
         
+            #avatar-avatarbox{
+                top: 10px;
+                margin: auto;
+                left: 70px;
+                right: 0;
+                bottom:500px;
+            }
         
+            #avatar-avatar-canvas-div {
+                margin: auto;
+            }
+            #imagelogo{
+		   
+		}
+        }
+        
+        @media all and (orientation:landscape)
         
             #BotChatGoesHere {
                 border: 0px solid #333;
@@ -54,7 +84,7 @@
 		height:700px;
 		bottom:200px;
             }  
-	
+	    }
 	     #footer { 
             position:absolute;
             bottom: 2px;
