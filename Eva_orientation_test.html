@@ -96,8 +96,8 @@
     </style>
 </head>
 
-<body>
-	<div class="row">
+<body style="overflow:hidden; margin:0">
+	<div class="row" id="main">
     <div id="BotChatGoesHere" class="col-sm-6"></div>
     
     <div id="imagelogo" class="col-sm-4">
@@ -132,7 +132,14 @@
         web.addMessage("Hello I am Eva. How may I assist you?", "", "", "");
         web.processMessages();
     </script>
-		
+		<script language="javascript">
+        function autoResizeDiv()
+        {
+            document.getElementById('main').style.height = window.innerHeight +'px';
+        }
+        window.onresize = autoResizeDiv;
+        autoResizeDiv();
+    </script>
 	
     <script>
         var canListen = true; //this object will be used to toggle mic. is CanListen is true, turn on; else turn off.
