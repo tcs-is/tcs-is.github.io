@@ -49,6 +49,7 @@
 		
 	    #avatar-avatar-video-div{
 		top: 0;
+		height: 1% !important;
 		margin-left: auto;
   		margin-right: auto;
 		position:relative;
@@ -138,11 +139,11 @@
         web.voice = "";
         web.voiceMod = "";
 	if(screen.width>=300 || screen.width <= 500){
-		web.width = screen.width/2;
+		web.width = screen.width/4*3;
         	web.height = "400";
 	}
 	else{
-        	web.width = screen.width/2;
+        	web.width = screen.width/4*3;
         	web.height = "600";
 	}
         web.createBox();
