@@ -6,9 +6,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Ask Eva</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
     <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
 
     <style>
@@ -33,11 +33,11 @@
                 display: none;
             }
             #avatar-avatarbox{
-		 top: 5%;
-                 margin: auto;
-		 width: 100%;
-		 height: 70%;
- 		 position:absolute;
+		top: 5%;
+                margin: auto;
+		width: 100%;
+		height: 70%;
+ 		position:absolute;
             }
 	
 	    #avatar-avatarbox.avatar-avatarbox{
@@ -50,24 +50,27 @@
 	    #avatar-avatar-video-div{
 		top: 0;
 		margin-left: auto;
-  		margin-right: auto;    
-		}
+  		margin-right: auto;
+		position:relative;
+		left:50;    
+		
+	   }
         
             #avatar-avatar-canvas-div {
                 margin: auto;
 		height: 50%;
 		width: 100%;
 		position:absolute;
-            }
+           }
             #imagelogo{
-		   display:none;
-		}
+		display:none;
+	   }
         }
         
         @media all and (orientation:landscape){
             #phone{
-		    display:none;
-		}
+		display:none;
+	   }
             #BotChatGoesHere {
                 border: 0px solid #333;
                 float: left;
@@ -82,7 +85,7 @@
                 display: none;
             }
             #avatar-avatar-canvas-div {   
-		    position:absolute;
+		position:absolute;
             }
             #imagelogo{
                 top: 30px;
@@ -90,38 +93,36 @@
 		float: left;
                 position: absolute;
                 right: 1px;
-                margin: 30px;    
-		    
-		    
+                margin: 30px;        
             }
 		
 	    #avatar-avatarbox{
 		height:700px;
 		bottom:200px;
-		    position:absolute;
+		position:absolute;
             }  
-	    }
+	 }
 	     #footer {
-		     position:absolute;
-		     bottom: 2px;
-		     color: blue;
-		     margin: auto;
-        	}
+		position:absolute;
+		bottom: 2px;
+		color: blue;
+		margin: auto;
+           }
     </style>
 </head>
 
 <body style="overflow:hidden; margin:auto">
 	<div id="main">
-    <div id="BotChatGoesHere"></div>
-    
-    <div id="imagelogo">
-	<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1280px-Tata_Consultancy_Services_Logo.svg.png" alt="TCS logo" height="300" 
+    		<div id="BotChatGoesHere"></div>
+    		<div id="imagelogo">
+			<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1280px-Tata_Consultancy_Services_Logo.svg.png" alt="TCS logo" height="300" 
 	     width="630">
+		</div>
+    		<div id="footer" align="center">
+       			Powered by: TATA Consultancy Services
+    		</div>
 	</div>
-    <div id="footer" align="center">
-       Powered by: TATA Consultancy Services
-    </div>
-	</div>
+	
 <!--     <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script> -->
     <script src="./chatbot.js"></script>
     <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
@@ -148,9 +149,9 @@
         web.processMessages();
     </script>
 	</div>
-		<script language="javascript">
-        function autoResizeDiv()
-        {
+	
+   <script language="javascript">
+        function autoResizeDiv(){
             document.getElementById('main').style.height = window.innerHeight +'px';
         }
         window.onresize = autoResizeDiv;
