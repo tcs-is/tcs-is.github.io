@@ -41,7 +41,6 @@
                 left: 70px;
                 right: 0;
                 bottom:500px;
-		    col-sm-4;
             }
         
             #avatar-avatar-canvas-div {
@@ -82,7 +81,6 @@
             }
 		
 	    #avatar-avatarbox{
-		    col-sm-4;
 		height:700px;
 		bottom:200px;
             }  
@@ -104,8 +102,6 @@
 	<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1280px-Tata_Consultancy_Services_Logo.svg.png" alt="TCS logo" height="300" 
 	     width="630">
 	</div>
-		
-		</div>
     <div id="footer" align="center">
        Powered by: TATA Consultancy Services
     </div>
@@ -116,6 +112,7 @@
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <!-- Below import and intialisation is from botlibre -->
     <script type='text/javascript' src="https://www.botlibre.com/scripts/sdk.js"></script>
+	<div class="col-sm-4">
     <script type='text/javascript'>
         //old application ID: 8084411693033336948
         //old application ID: 3129618583901271656
@@ -134,6 +131,8 @@
         web.addMessage("Hello I am Eva. How may I assist you?", "", "", "");
         web.processMessages();
     </script>
+		</div>
+	</div>
     <script>
         var canListen = true; //this object will be used to toggle mic. is CanListen is true, turn on; else turn off.
         var params = BotChat.queryParams(location.search);
