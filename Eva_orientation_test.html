@@ -35,9 +35,9 @@
             #avatar-avatarbox{
 		 top: 5%;
                  margin: auto;
-		    width: 100%;
-		    height: 70%;
- 		position:absolute;
+		 width: 100%;
+		 height: 70%;
+ 		 position:absolute;
             }
 	
 	    #avatar-avatarbox.avatar-avatarbox{
@@ -48,10 +48,9 @@
 	    }
 		
 	    #avatar-avatar-video-div{
-		    top: 0;
-		    margin-left: auto;
-  		    margin-right: auto;
-		    
+		top: 0;
+		margin-left: auto;
+  		margin-right: auto;    
 		}
         
             #avatar-avatar-canvas-div {
@@ -66,7 +65,9 @@
         }
         
         @media all and (orientation:landscape){
-        
+            #phone{
+		    display:none;
+		}
             #BotChatGoesHere {
                 border: 0px solid #333;
                 float: left;
@@ -127,6 +128,7 @@
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <!-- Below import and intialisation is from botlibre -->
     <script type='text/javascript' src="https://www.botlibre.com/scripts/sdk.js"></script>
+	<div id = "phone">
     <script type='text/javascript'>
         //old application ID: 8084411693033336948
         //old application ID: 3129618583901271656
@@ -145,6 +147,7 @@
         web.addMessage("Hello I am Eva. How may I assist you?", "", "", "");
         web.processMessages();
     </script>
+	</div>
 		<script language="javascript">
         function autoResizeDiv()
         {
