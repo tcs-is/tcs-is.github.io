@@ -148,8 +148,13 @@
         	web.height = "400";
 	}
 	else{
-        	web.width = "600";
-        	web.height = "600";
+		if(window.innerHeight > window.innerWidth){
+   		web.width = "600";
+        	web.height = "600";	 
+		}
+		web.width = "800";
+        	web.height = "800";
+        	
 	}
         web.createBox();
         web.addMessage("Hello I am Eva. How may I assist you?", "", "", "");
