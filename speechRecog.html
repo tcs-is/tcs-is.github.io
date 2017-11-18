@@ -102,14 +102,14 @@ Powered by: TATA Consultancy Services
             console.log("WEB ENDED");
             canListen = true;
         }
-         $('input:text').attr('id','eventTarg');
+        $('input:text').attr('id', 'eventTarg');
         var keyVal = 65;
-         $("#eventTarg").triggerHandler ({
+        $("input:text").triggerHandler({
             type: 'keypress', keyCode: keyVal, which: keyVal, charCode: keyVal
         });
-        $('#eventTarg').val("Hello Eva");
-        $( "#eventTarg" ).triggerHandler( "focus" );
-        $( "#eventTarg" ).off('eventListener');
+        $('input:text').val("Hello Eva");
+        $("input:text").triggerHandler("focus");
+        $("input:text").off('eventListener');
         
         if (annyang) {
   // Let's define our first command. First the text we expect, and then the function it should call
@@ -146,8 +146,8 @@ Powered by: TATA Consultancy Services
             })
             .subscribe(function (activity) {
             var msg = activity.text;
-var detectNumbers = msg.split(' ');
-var newMsg = [];
+            var detectNumbers = msg.split(' ');
+            var newMsg = [];
                 detectNumbers.forEach((el) => {
                     if(!isNaN(el)){
                         var newEl = '';
