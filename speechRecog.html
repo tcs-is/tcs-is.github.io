@@ -101,25 +101,21 @@ Powered by: TATA Consultancy Services
             canListen = true;
         }
         
-        var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
-recognition.lang = 'en-US';
-recognition.interimResults = false;
-recognition.maxAlternatives = 5;
-recognition.start();
+        if (annyang) {
+  // Let's define our first command. First the text we expect, and then the function it should call
+  var commands = {
+    'hello eva': function() {
+      $('input:text').val("Hello Eva");
+    }
+  };
 
-recognition.onresult = function(event) {
-    console.log('You said: ', event.results[0][0].transcript);
-};
+  // Add our commands to annyang
+  annyang.addCommands(commands);
+
+  // Start listening. You can call this here, or attach this call to an event, button, etc.
+  annyang.start();
+}
         
-        recognition.speechIsAvailable = function(){
-            return recognition != null;
-        }
-        
-        //SpeechOptions has a speechRecognizer and a SpeechSynthesizer.
-        //For the current situation, we are not using SpeechSynthesizer. For example please refer to #1 below.
-        var speechOptions = {
-            speechRecognizer: recognition//new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
-        }
         //Connecting with the TestBot101117qna5 BotService
         var botConnection = new BotChat.DirectLine({
             secret: '3h8VQ2panyw.cwA.7p4.QV97cGLXWebGc0cNtZzCM8X1_6u5AypYukmX7myAw_I',
@@ -139,20 +135,6 @@ recognition.onresult = function(event) {
                 return activity.from.id == bot.id;
             })
             .subscribe(function (activity) {
-//                 var message = activity.text;
-//                 message = message.split('\n ').join('\n\n');
-//                 var detectNumbers = activity.text.split(' ');
-//                 detectNumbers.forEach((el) => {
-//                     if(!isNaN(el)){
-//                         var newEl = '';
-//                         for(var i=0; i<el.length; i++){
-//                             newEl += el[i]+' ';
-//                         }
-//                         el = newEl;
-//                     }
-//                 });
-//                 message = detectNumbers.join(' ');
-//                 console.log(message);
             var msg = activity.text;
 var detectNumbers = msg.split(' ');
 var newMsg = [];
@@ -186,27 +168,8 @@ var newMsg = [];
                     console.log('"buttonClicked" sent');
                 });
         };
-        //Every eight second, check if we can turn the mic on.
-//         setInterval(function () {
-//             //Set the auto voice recognisation to false.
-//             //If you want to turn on, replace 'false' to 'canListen'
-//             if (false) {
-//                 $('.wc-mic.inactive').trigger("click");
-//             }
-//         }, 8000);
     </script>
     
    
 </body>
-</html>
-<!--
-Note:
-#1: 
-var speechOptions = {
-speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
-speechSynthesizer: new CognitiveServices.SpeechSynthesizer({
-    subscriptionKey: '969780dbeab8445fb8dc405016a315e2',
-    gender: CognitiveServices.SynthesisGender.Female,
-    voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
-    })
-} ->
+</html
