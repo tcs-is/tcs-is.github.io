@@ -327,4 +327,23 @@ speechSynthesizer: new CognitiveServices.SpeechSynthesizer({
     gender: CognitiveServices.SynthesisGender.Female,
     voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
     })
-} ->
+}
+//Bot listening for inbound backchannel events - in this case it only listens for events named "buttonClicked"  
+bot.on("event", function (event) {
+    var msg = new builder.Message().address(event.address);
+    msg.textLocale("en-us");
+    if (event.name === "buttonClicked") {
+        msg.text("I see that you just pushed that button");
+    }
+    bot.send(msg);
+})
+
+//Creates a backchannel event
+var createEvent = (eventName, value, address) => {
+    var msg = new builder.Message().address(address);
+    msg.data.type = "event";
+    msg.data.name = eventName;
+    msg.data.value = value;
+    return msg;
+}
+->
