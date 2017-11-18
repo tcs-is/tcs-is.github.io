@@ -106,7 +106,8 @@ Powered by: TATA Consultancy Services
   var commands = {
     'hello eva': function() {
       $('input:text').val("Hello Eva");
-        $("input:text").sendkeys ("B") ;
+        $('input:text').attr('id','eventTarg');
+        $("#eventTrag").sendkeys ("B") ;
     }
   };
 
