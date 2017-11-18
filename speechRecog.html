@@ -111,6 +111,10 @@ recognition.onresult = function(event) {
     console.log('You said: ', event.results[0][0].transcript);
 };
         
+        recognition.speechIsAvailable = function(){
+            return recognition != null;
+        }
+        
         //SpeechOptions has a speechRecognizer and a SpeechSynthesizer.
         //For the current situation, we are not using SpeechSynthesizer. For example please refer to #1 below.
         var speechOptions = {
