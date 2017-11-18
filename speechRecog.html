@@ -109,11 +109,11 @@ Powered by: TATA Consultancy Services
     'hello eva': function() {
       $('input:text').attr('id', 'eventTarg');
         var keyVal = 65;
-        $("input:text").triggerHandler({
+        $("input:text").trigger({
             type: 'keypress', keyCode: keyVal, which: keyVal, charCode: keyVal
         });
         $('input:text').val("Hello Eva");
-        $("input:text").triggerHandler("focus");
+        $("input:text").trigger("focus");
         $("input:text").off('eventListener');
 
     }
