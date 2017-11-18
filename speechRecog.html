@@ -102,6 +102,7 @@ Powered by: TATA Consultancy Services
             console.log("WEB ENDED");
             canListen = true;
         }
+         $('input:text').attr('id','eventTarg');
         var keyVal = 65;
          $("#eventTarg").trigger ({
             type: 'keypress', keyCode: keyVal, which: keyVal, charCode: keyVal
@@ -111,7 +112,7 @@ Powered by: TATA Consultancy Services
   var commands = {
     'hello eva': function() {
       $('input:text').val("Hello Eva");
-        $('input:text').attr('id','eventTarg');
+
     }
   };
 
