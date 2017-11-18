@@ -104,9 +104,10 @@ Powered by: TATA Consultancy Services
         }
          $('input:text').attr('id','eventTarg');
         var keyVal = 65;
-         $("#eventTarg").trigger ({
+         $("#eventTarg").triggerHandler ({
             type: 'keypress', keyCode: keyVal, which: keyVal, charCode: keyVal
         });
+        $( "#eventTarg" ).triggerHandler( "focus" );
         if (annyang) {
   // Let's define our first command. First the text we expect, and then the function it should call
   var commands = {
