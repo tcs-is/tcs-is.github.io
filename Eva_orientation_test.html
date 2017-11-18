@@ -300,6 +300,19 @@
                 $('.wc-mic.inactive').trigger("click");
             }
         }, 8000);
+	    
+	function postButtonMessage() {
+            botConnection
+                .postActivity({
+                    from: { id: 'me' },
+                    name: 'buttonClicked',
+                    type: 'event',
+                    value: ''
+                })
+                .subscribe(function (id) {
+                    console.log('"buttonClicked" sent');
+                });
+        };
     </script>
    
 </body>
