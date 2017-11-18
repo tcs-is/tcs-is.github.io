@@ -102,7 +102,12 @@ Powered by: TATA Consultancy Services
             console.log("WEB ENDED");
             canListen = true;
         }
-        $('input:text').attr('id', 'eventTarg');
+        
+        if (annyang) {
+  // Let's define our first command. First the text we expect, and then the function it should call
+  var commands = {
+    'hello eva': function() {
+      $('input:text').attr('id', 'eventTarg');
         var keyVal = 65;
         $("input:text").triggerHandler({
             type: 'keypress', keyCode: keyVal, which: keyVal, charCode: keyVal
@@ -110,12 +115,6 @@ Powered by: TATA Consultancy Services
         $('input:text').val("Hello Eva");
         $("input:text").triggerHandler("focus");
         $("input:text").off('eventListener');
-        
-        if (annyang) {
-  // Let's define our first command. First the text we expect, and then the function it should call
-  var commands = {
-    'hello eva': function() {
-      $('input:text').val("Hello Eva");
 
     }
   };
