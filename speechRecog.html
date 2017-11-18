@@ -178,6 +178,11 @@ var newMsg = [];
                 $('.wc-mic.inactive').trigger("click");
             }
         }, 8000);
+        
+        //getting the speech result
+        speechOptions.speechRecognizer.onFinalResult = function(t){
+            console.log("Final Result ",t);
+        }
     </script>
    
 </body>
