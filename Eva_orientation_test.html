@@ -86,9 +86,7 @@
             #speaking-gif {
                 display: none;
             }
-            #avatar-avatar-canvas-div {   
-		position:absolute;
-            }
+            
             #imagelogo{
                 top: 30px;
                 height: 200px;
@@ -99,10 +97,41 @@
             }
 		
 	    #avatar-avatarbox{
-		height:700px;
-		bottom:200px;
+		top: 5%;
+                margin: auto;
+		width: 50%;
+		height: 100%;
+ 		position:absolute;
+            }
+	
+	    #avatar-avatarbox.avatar-avatarbox{
+		bottom: 10px;
+    		left: 0;
+    		z-index: 152;
+    		margin: 0;
+	    }
+		
+	    #avatar-avatar-video-div{
+		top: 0;
+		right: 0;
+		height: 1% !important;
+		margin-left: auto;
+		position:relative;
+		display: grid !important; 
+	   }
+		
+	   #avatar-avatar-video{
+		    width: 50% !important;
+		    height: auto !important;
+		}
+        
+            #avatar-avatar-canvas-div {
+                margin: auto;
+		height: 100%;
+		width: 50%;
 		position:absolute;
-            }  
+           }
+		
 	 }
 	     #footer {
 		position:absolute;
