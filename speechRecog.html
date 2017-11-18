@@ -107,14 +107,12 @@ Powered by: TATA Consultancy Services
   // Let's define our first command. First the text we expect, and then the function it should call
   var commands = {
     'hello eva': function() {
-      $('input:text').attr('id', 'eventTarg');
+                $("input:text").trigger("focus");
         var keyVal = 65;
         $("input:text").trigger({
             type: 'keypress', keyCode: keyVal, which: keyVal, charCode: keyVal
         });
         $('input:text').val("Hello Eva");
-        $("input:text").trigger("focus");
-        $("input:text").off('eventListener');
 
     }
   };
