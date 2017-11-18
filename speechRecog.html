@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Ask Eva</title>
+
+    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+
+    <style>
+        .example {
+            margin: auto;
+            width: 300px;
+            bottom: 100px;
+        }
+        .example>h2 {
+            font-family: 'Segoe UI';
+        }
+        #BotChatGoesHere {
+            border: 0px solid #333;
+            height: 300px;
+            position: relative;
+            width: 800px;
+            top: 950px;
+            right: 0;
+            margin: auto;
+        }
+        #speaking-gif {
+            display: none;
+        }
+        
+        #avatar-avatarbox{
+            top: 10px;
+            margin: auto;
+            left: 70px;
+            right: 0;
+            bottom:500px;
+        }
+        
+        #avatar-avatar-canvas-div {
+            margin: auto;
+        }
+        #footer { 
+            position:absolute;
+            bottom: 2px;
+            width:100%;
+            color: blue;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="BotChatGoesHere">
+    </div>
+    <div id="footer" align="center">
+Powered by: TATA Consultancy Services
+        </div>
+<!--     <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script> -->
+    <script src="./chatbot.js"></script>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <!-- Below import and intialisation is from botlibre -->
+    <script type='text/javascript' src="https://www.botlibre.com/scripts/sdk.js"></script>
+    <script type='text/javascript'>
+        //old application ID: 8084411693033336948
+        //old application ID: 3129618583901271656
+        //new application ID: 2454448050889432234
+        //new application ID: 6278325859819290255
+        SDK.applicationId = "2454448050889432234";
+        var sdk = new SDKConnection();
+        var web = new WebAvatar();
+        web.connection = sdk;
+        web.avatar = "780622";
+        web.voice = "";
+        web.voiceMod = "";
+        web.width = "800";
+        web.height = "900";
+        web.createBox();
+    </script>
+    <script>
+        var canListen = true; //this object will be used to toggle mic. is CanListen is true, turn on; else turn off.
+        var params = BotChat.queryParams(location.search);
+        //User object, is the sender
+        var user = {
+            id: params['userid'] || 'userid',
+            name: params['username'] || 'You'
+        };
+        //Bot object, is the receiver
+        var bot = {
+            id: "TestBot101117qna5",
+            name: "Eva"
+        };
+        window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
+        //This function will be called when the avatar has ended speaking.
+        web.ended = function () {
+            console.log("WEB ENDED");
+            canListen = true;
+        }
+        //SpeechOptions has a speechRecognizer and a SpeechSynthesizer.
+        //For the current situation, we are not using SpeechSynthesizer. For example please refer to #1 below.
+        var speechOptions = {
+            speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
+        }
+        //Connecting with the TestBot101117qna5 BotService
+        var botConnection = new BotChat.DirectLine({
+            secret: '3h8VQ2panyw.cwA.7p4.QV97cGLXWebGc0cNtZzCM8X1_6u5AypYukmX7myAw_I',
+            webSocket: params['webSocket'] && params['webSocket'] === 'true' // defaults to true
+        });
+        //Instantiating the BotChat application
+        BotChat.App({
+            bot: bot,
+            botConnection: botConnection,
+            // locale: 'es-es', // override locale to Spanish
+            user: user,
+            speechOptions: speechOptions
+        }, document.getElementById('BotChatGoesHere'));
+        //Listening on the any activity happening with the chat such as message send/received.
+        botConnection.activity$
+            .filter(function (activity) {
+                return activity.from.id == bot.id;
+            })
+            .subscribe(function (activity) {
+//                 var message = activity.text;
+//                 message = message.split('\n ').join('\n\n');
+//                 var detectNumbers = activity.text.split(' ');
+//                 detectNumbers.forEach((el) => {
+//                     if(!isNaN(el)){
+//                         var newEl = '';
+//                         for(var i=0; i<el.length; i++){
+//                             newEl += el[i]+' ';
+//                         }
+//                         el = newEl;
+//                     }
+//                 });
+//                 message = detectNumbers.join(' ');
+//                 console.log(message);
+            var msg = activity.text;
+var detectNumbers = msg.split(' ');
+var newMsg = [];
+                detectNumbers.forEach((el) => {
+                    if(!isNaN(el)){
+                        var newEl = '';
+                        for(var i=0; i<el.length; i++){
+                            newEl += el[i]+' ';
+                        }
+                        el = newEl;
+                    }
+                    newMsg.push(el);
+                });
+                console.log(newMsg);
+                var message = newMsg.join(' ');
+                console.log(message);
+                canListen = false;
+                web.addMessage(message, "", "", "");
+                web.processMessages();
+            });
+        //This is a helper method to send a message as a Bot.
+        function postButtonMessage() {
+            botConnection
+                .postActivity({
+                    from: { id: 'me' },
+                    name: 'buttonClicked',
+                    type: 'event',
+                    value: ''
+                })
+                .subscribe(function (id) {
+                    console.log('"buttonClicked" sent');
+                });
+        };
+        //Every eight second, check if we can turn the mic on.
+        setInterval(function () {
+            //Set the auto voice recognisation to false.
+            //If you want to turn on, replace 'false' to 'canListen'
+            if (false) {
+                $('.wc-mic.inactive').trigger("click");
+            }
+        }, 8000);
+    </script>
+   
+</body>
+</html>
+<!--
+Note:
+#1: 
+var speechOptions = {
+speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
+speechSynthesizer: new CognitiveServices.SpeechSynthesizer({
+    subscriptionKey: '969780dbeab8445fb8dc405016a315e2',
+    gender: CognitiveServices.SynthesisGender.Female,
+    voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
+    })
+} ->
