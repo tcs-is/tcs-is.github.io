@@ -217,14 +217,18 @@
         web.avatar = "780622";
         web.voice = "";
         web.voiceMod = "";
-	if(screen.width>=300 || screen.width <= 500){
- 		web.width = screen.width/4*3;
+	if((screen.width>=300 || screen.width <= 500) && screen.width <= 1137){
+ 		web.width = sceren.width/4*3;
           	web.height = "400";
   	}
   	else{
          	web.width = screen.width/4*3;
           	web.height = "600";
   	}
+	if(screen.width >= 1137){
+		web.width = "650;
+          	web.height = "630";
+	}
         web.createBox();
         web.addMessage("Hello I am Eva. How may I assist you?", "", "", "");
         web.processMessages();
