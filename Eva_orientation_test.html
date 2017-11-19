@@ -75,7 +75,7 @@
 	   }
         }
         
-        @media all and (orientation:landscape){
+        @media all and (orientation:landscape) and (max-width: 2732px){
 		
             #BotChatGoesHere {
                 border: 0px solid #333;
@@ -140,6 +140,44 @@
            }
 		
 	 }
+	    
+	     @media all and (orientation:landscape) and (min-width: 2733px){
+			.example {
+			    float: left;
+			    margin-right: 0px;
+			    width: 300px;
+			}
+			.example>h2 {
+			    font-family: 'Segoe UI';
+			}
+			#BotChatGoesHere {
+			    border: 0px solid #333;
+			    float: left;
+			    height: 300px;
+			    position: absolute;
+			    width: 620px;
+			    bottom: 0;
+			    right: 0;
+			    margin: 30px;
+			}
+			#speaking-gif {
+			    display: none;
+			}
+			#avatar-avatar-canvas-div {
+
+			    padding-left: 10px;
+			}
+			#imagelogo{
+			    	padding-top: 30px;
+				padding-left : 700px;  
+
+			}
+			#imagelogo img{
+				float:right;
+			    	margin-right: 125px;
+			}
+	    }
+	    
 	     #footer {
 		position:absolute;
 		bottom: 2px;
@@ -184,7 +222,7 @@
           	web.height = "400";
   	}
   	else{
-         	web.width = screen.width/2;
+         	web.width = screen.width/4*3;
           	web.height = "600";
   	}
         web.createBox();
