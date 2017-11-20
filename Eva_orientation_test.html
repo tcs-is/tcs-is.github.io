@@ -140,39 +140,68 @@
 		
 	 }
 	
-	     @media all and (orientation:landscape) and (min-width: 1137px){
-			.example {
-			    float: left;
-			    margin-right: 0px;
-			    width: 300px;
-			}
-			.example>h2 {
-			    font-family: 'Segoe UI';
-			}
-			#BotChatGoesHere {
-			    border: 0px solid #333;
-			    float: left;
-			    height: 300px;
-			    position: absolute;
-			    width: 620px;
-			    bottom: 0;
-			    right: 0;
-			    margin: 30px;
-			}
-			#speaking-gif {
-			    display: none;
-			}
-			#avatar-avatar-canvas-div {
-			    padding-left: 10px;
-			}
-			#imagelogo{
-			    	padding-top: 30px;
-				padding-left : 700px;  
-			}
-			#imagelogo img{
-				float:right;
-			    	margin-right: 125px;
-			}
+	 @media all and (orientation:landscape) and (min-width: 1137px){
+	     #BotChatGoesHere {
+                border: 0px solid #333;
+                float: left;
+                height: 50%;
+                position: absolute;
+                width: 50%;
+                bottom: 0;
+                right: 0;
+                margin: 30px;
+            }
+            #speaking-gif {
+                display: none;
+            }
+            
+            #imagelogo{
+                top: 5%;
+    		width: 50%;
+    		height: auto;
+    		float: right;
+    		position: relative;
+    		right: 30px;
+            }
+		
+	    #avatar-avatarbox{
+                margin: auto;
+		width: 50%;
+		height: 100%;
+ 		position:absolute;
+            }
+	
+	    #avatar-avatarbox.avatar-avatarbox{
+		bottom: 10px;
+    		left: 0;
+    		z-index: 152;
+    		margin: 0;
+	    }
+		
+	    #avatar-avatar-video-div{
+		top: 0;
+		right: 0;
+		width: 100% !important;
+		height: 85% !important;
+		margin-left: auto;
+		position:relative;
+		display: grid !important; 
+		background-image: none !important;
+	   }
+		
+	   #avatar-avatar-video{
+		    width: 100% !important;
+		    position: absolute;
+    		    bottom: 0;
+		    height: auto !important;
+		}
+        
+            #avatar-avatar-canvas-div {
+                margin: auto;
+		height: 100%;
+		width: 50%;
+		position:absolute;
+           }
 	    }   
 	     #footer {
 		position:absolute;
