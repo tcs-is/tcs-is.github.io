@@ -22,7 +22,6 @@
         }  
 	    
         @media all and (orientation:portrait){
-
 		
             #BotChatGoesHere {
                 border: 0px solid #333;
@@ -75,7 +74,7 @@
 	   }
         }
         
-        @media all and (orientation:landscape) and (max-width: 1136px){
+        @media all and (orientation:landscape){
 		
             #BotChatGoesHere {
                 border: 0px solid #333;
@@ -140,44 +139,6 @@
            }
 		
 	 }
-	    
-	    /* @media all and (orientation:landscape) and (min-width: 1137px){
-			.example {
-			    float: left;
-			    margin-right: 0px;
-			    width: 300px;
-			}
-			.example>h2 {
-			    font-family: 'Segoe UI';
-			}
-			#BotChatGoesHere {
-			    border: 0px solid #333;
-			    float: left;
-			    height: 300px;
-			    position: absolute;
-			    width: 620px;
-			    bottom: 0;
-			    right: 0;
-			    margin: 30px;
-			}
-			#speaking-gif {
-			    display: none;
-			}
-			#avatar-avatar-canvas-div {
-
-			    padding-left: 10px;
-			}
-			#imagelogo{
-			    	padding-top: 30px;
-				padding-left : 700px;  
-
-			}
-			#imagelogo img{
-				float:right;
-			    	margin-right: 125px;
-			}
-	    }*/
-	    
 	     #footer {
 		position:absolute;
 		bottom: 2px;
@@ -208,7 +169,7 @@
     <script type='text/javascript'>
         //old application ID: 8084411693033336948
         //old application ID: 3129618583901271656
-	//old application ID: 2454448050889432234
+        //new application ID: 2454448050889432234
         //new application ID: 6278325859819290255
         SDK.applicationId = "2454448050889432234";
         var sdk = new SDKConnection();
@@ -218,13 +179,13 @@
         web.voice = "";
         web.voiceMod = "";
 	if(screen.width>=300 || screen.width <= 500){
-		web.width = sceren.width/4*3;
-		web.height = "400";
-	}
-	else{
-		web.width = screen.width/4*3;
-		web.height = "600";
-	}
+ 		web.width = screen.width/4*3;
+          	web.height = "400";
+  	}
+  	else{
+         	web.width = screen.width/2;
+          	web.height = "600";
+  	}
         web.createBox();
         web.addMessage("Hello I am Eva. How may I assist you?", "", "", "");
         web.processMessages();
@@ -375,7 +336,6 @@ bot.on("event", function (event) {
     }
     bot.send(msg);
 })
-
 //Creates a backchannel event
 var createEvent = (eventName, value, address) => {
     var msg = new builder.Message().address(address);
