@@ -274,7 +274,7 @@
     </script>
 	
     <script>
-        var canListen = false; //this object will be used to toggle mic. if CanListen is true, turn on; else turn off.
+        var canListen = true; //this object will be used to toggle mic. if CanListen is true, turn on; else turn off.
         var params = BotChat.queryParams(location.search);
         //User object, is the sender
         var user = {
@@ -368,7 +368,7 @@
         setInterval(function () {
             //Set the auto voice recognisation to false.
             //If you want to turn on, replace 'false' to 'canListen'
-            if (canListen) {
+            if (false) {
                 $('.wc-mic.inactive').trigger("click");
             }
         }, 1000);
