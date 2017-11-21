@@ -290,7 +290,7 @@
         //This function will be called when the avatar has ended speaking.
         web.ended = function () {
             console.log("WEB ENDED");
-            canListen = true;
+            canListen = false;
         }
         //SpeechOptions has a speechRecognizer and a SpeechSynthesizer.
         //For the current situation, we are not using SpeechSynthesizer. For example please refer to #1 below.
@@ -371,7 +371,7 @@
             if (false) {
                 $('.wc-mic.inactive').trigger("click");
             }
-        }, 8000);
+        }, 1000);
 	    
 	function postButtonMessage() {
             botConnection
