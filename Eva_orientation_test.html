@@ -237,32 +237,7 @@
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <!-- Below import and intialisation is from botlibre -->
     <script type='text/javascript' src="https://www.botlibre.com/scripts/sdk.js"></script>
-    <script type='text/javascript'>
-        //old application ID: 8084411693033336948
-        //old application ID: 3129618583901271656
-        //new application ID: 2454448050889432234
-        //new application ID: 6278325859819290255
-        SDK.applicationId = "2454448050889432234";
-        var sdk = new SDKConnection();
-        var web = new WebAvatar();
-        web.connection = sdk;
-        web.avatar = "780622";
-        web.voice = "";
-        web.voiceMod = "";
-	web.width = "screen.width/4*3";
-        web.height = "600";
-	/*if(screen.width>=300 || screen.width <= 500){
- 		web.width = screen.width/4*3;
-          	web.height = "400";
-  	}
-  	else{
-         	web.width = screen.width/2;
-          	web.height = "600";
-  	}*/
-        web.createBox();
-        web.addMessage("Hello I am Eva. How may I assist you?", "", "", "");
-        web.processMessages();
-    </script>
+    
 
 	
    <script language="javascript">
@@ -288,10 +263,7 @@
         };
         window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
         //This function will be called when the avatar has ended speaking.
-        web.ended = function () {
-            console.log("WEB ENDED");
-            canListen = true;
-        }
+        
         //SpeechOptions has a speechRecognizer and a SpeechSynthesizer.
         //For the current situation, we are not using SpeechSynthesizer. For example please refer to #1 below.
         var speechOptions = {
@@ -348,8 +320,8 @@
                 var message = newMsg.join(' ');
                 console.log(message);
                 canListen = false;
-                web.addMessage(message, "", "", "");
-                web.processMessages();
+                //web.addMessage(message, "", "", "");
+                //web.processMessages();
             });
         //This is a helper method to send a message as a Bot.
 	postButtonMessage();
