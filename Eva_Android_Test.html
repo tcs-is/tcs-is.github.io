@@ -296,8 +296,13 @@
         //SpeechOptions has a speechRecognizer and a SpeechSynthesizer.
         //For the current situation, we are not using SpeechSynthesizer. For example please refer to #1 below.
         var speechOptions = {
-            speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' })
-        }
+		speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
+		speechSynthesizer: new CognitiveServices.SpeechSynthesizer({
+		    subscriptionKey: '969780dbeab8445fb8dc405016a315e2',
+		    gender: CognitiveServices.SynthesisGender.Female,
+		    voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
+		    })
+	}
 
         //Connecting with the AskEva BotService
         var botConnection = new BotChat.DirectLine({
@@ -349,23 +354,10 @@
                 var message = newMsg.join(' ');
                 console.log(message);
                 canListen = false;
-                web.addMessage(message, "", "", "");
-                web.processMessages();
+//                 web.addMessage(message, "", "", "");
+//                 web.processMessages();
             });
-        //This is a helper method to send a message as a Bot.
-	postButtonMessage();
-        function postButtonMessage() {
-            botConnection
-                .postActivity({
-                    from: { id: 'me' },
-                    name: 'buttonClicked',
-                    type: 'event',
-                    value: ''
-                })
-                .subscribe(function (id) {
-                    console.log('"buttonClicked" sent');
-                });
-        };
+        
         //Every eight second, check if we can turn the mic on.
         setInterval(function () {
             //Set the auto voice recognisation to false.
@@ -375,6 +367,7 @@
             }
         }, 1000);
 	    
+	//This is a helper method to send a message as a Bot.
 	function postButtonMessage() {
             botConnection
                 .postActivity({
