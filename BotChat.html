@@ -132,14 +132,14 @@
         }
         //SpeechOptions has a speechRecognizer and a SpeechSynthesizer.
         //For the current situation, we are not using SpeechSynthesizer. For example please refer to #1 below.
-       /* var speechOptions = {
+       var speechOptions = {
             speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' })
-        }*/
+        }
 
-        var speechOptions = {
+       /*  var speechOptions = {
      speechRecognizer: new BotChat.Speech.BrowserSpeechRecognizer(),
      speechSynthesizer: new BotChat.Speech.BrowserSpeechSynthesizer()
-};
+};*/
 
         //Connecting with the AskEva BotService
         var botConnection = new BotChat.DirectLine({
