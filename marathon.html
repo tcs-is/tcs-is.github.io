@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Standard Chartared Marathon</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        img{
+            height: 100%;
+            width: 100%;
+
+        }
+    </style>
 </head>
 <body>
+        <img src="https://lh3.google.com/u/0/d/1Spw8GgzN9FFvgAuHt5ZcuG3_i1MBhLyx=w2880-h1560-iv1" alt="TCS logo"><br>
     <script>
         function speak(text) {
             // Create a new instance of SpeechSynthesisUtterance.
@@ -22,7 +33,7 @@
 
             // If a voice has been selected, find the voice and set the
             // utterance instance's voice attribute.
-                msg.voice = speechSynthesis.getVoices().filter(function (voice) { return voice.name == 'Fiona'; })[0];
+            msg.voice = speechSynthesis.getVoices().filter(function (voice) { return voice.name == 'Fiona'; })[0];
 
             // Queue this utterance.
             window.speechSynthesis.speak(msg);
