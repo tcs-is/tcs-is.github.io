@@ -263,9 +263,9 @@
         //SpeechOptions has a speechRecognizer and a SpeechSynthesizer.
         //For the current situation, we are not using SpeechSynthesizer. For example please refer to #1 below.
         var speechOptions = {
-		speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
+		speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '6f8a7f0dd4614703bfbe12eeb480387f' }),
 		speechSynthesizer: new CognitiveServices.SpeechSynthesizer({
-		    subscriptionKey: '969780dbeab8445fb8dc405016a315e2',
+		    subscriptionKey: '6f8a7f0dd4614703bfbe12eeb480387f',
 		    gender: CognitiveServices.SynthesisGender.Female,
 		    voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
 		    })
@@ -273,7 +273,7 @@
 
         //Connecting with the AskEva BotService
         var botConnection = new BotChat.DirectLine({
-            secret: '8bJOQpyluX8.cwA.1X0.bnYtQFM1P2IsLniD7KSNSPNVbzBKrhqJkVsXfwqRSSc',
+            secret: '8bJOQpyluX8.cwA.-bY.qdL8vNmzmCvnQ4cyfwaXCGmqwWt-waFaf8O1C5G7ios',
             webSocket: params['webSocket'] && params['webSocket'] === 'true' // defaults to true
         });
         //Instantiating the BotChat application
