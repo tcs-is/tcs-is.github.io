@@ -6,9 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  user-scalable=no" />
     <title>Ask Eva</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
     <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
 
     <style>
@@ -31,45 +29,6 @@
                 bottom: 3%;
                 margin: auto;
             }
-            #speaking-gif {
-                display: none;
-            }
-            #avatar-avatarbox{
-		top: 0;
-                margin: auto;
-		width: 100%;
-		height: 50%;
- 		position:absolute;
-            }
-	
-	    #avatar-avatarbox.avatar-avatarbox{
-		bottom: 10px;
-    		left: 0;
-    		z-index: 152;
-    		margin: 0;
-	    }
-		
-	    #avatar-avatar-video-div{
-		top: 0;
-		height: 1% !important;
-		margin-left: auto;
-  		margin-right: auto;
-		position:relative;
-		display: grid !important; 
-	   }
-		
-	   #avatar-avatar-video{
-		    width: 77% !important;
-		    margin: auto;
-		    height: auto !important;
-		}
-        
-            #avatar-avatar-canvas-div {
-                margin: auto;
-		height: 50%;
-		width: 100%;
-		position:absolute;
-           }
             #imagelogo{
 		display:none;
 	   }
@@ -87,10 +46,6 @@
                 right: 0;
                 margin: 30px;
             }
-            #speaking-gif {
-                display: none;
-            }
-            
             #imagelogo{
                 top: 5%;
     		width: 50%;
@@ -99,45 +54,6 @@
     		position: relative;
     		right: 30px;
             }
-		
-	    #avatar-avatarbox{
-                margin: auto;
-		width: 50%;
-		height: 100%;
- 		position:absolute;
-            }
-	
-	    #avatar-avatarbox.avatar-avatarbox{
-		bottom: 10px;
-    		left: 0;
-    		z-index: 152;
-    		margin: 0;
-	    }
-		
-	    #avatar-avatar-video-div{
-		top: 0;
-		right: 0;
-		width: 100% !important;
-		height: 85% !important;
-		margin-left: auto;
-		position:relative;
-		display: grid !important; 
-		background-image: none !important;
-	   }
-		
-	   #avatar-avatar-video{
-		    width: 100% !important;
-		    position: absolute;
-    		    bottom: 0;
-		    height: auto !important;
-		}
-        
-            #avatar-avatar-canvas-div {
-                margin: auto;
-		height: 100%;
-		width: 50%;
-		position:absolute;
-           }
 		
 	 }
 	
@@ -152,9 +68,6 @@
                 right: 0;
                 margin: 30px;
             }
-            #speaking-gif {
-                display: none;
-            }
             
             #imagelogo{
                 top: 5%;
@@ -164,52 +77,6 @@
     		position: relative;
     		right: 30px;
             }
-		
-	    #avatar-avatarbox{
-                margin: auto;
-		width: 50%;
-		height: 100%;
- 		position:absolute;
-            }
-	
-	    #avatar-avatarbox.avatar-avatarbox{
-		bottom: 10px;
-    		left: 0;
-    		z-index: 152;
-    		margin: 0;
-	    }
-		
-	    #avatar-avatar-video-div{
-		top: 0;
-		right: 0;
-		width: 100% !important;
-		height: 85% !important;
-		margin-left: auto;
-		position:relative;
-		display: grid !important; 
-		background-image: none !important;
-	   }
-		
-	   #avatar-avatar-video{
-		    width: 50% !important;
-		    position: absolute;
-    		    bottom: 0;
-		    display: none !important;
-		    height: auto !important;
-		}
-        
-            #avatar-avatar-canvas-div {
-                margin: auto;
-		bottom: 0;
-		height: 90% !important;
-		width: 100% !important;
-		position:absolute;
-           }
-	    #avatar-avatar-canvas{
-		width: 100% !important; 
-		height: 95% !important;
-	   }
-	    
 	 }   
 	     #footer {
 		position:absolute;
@@ -235,7 +102,6 @@
     <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
 <!--     <script src="./chatbot.js"></script> -->
     <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
-    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 	
    <script language="javascript">
         function autoResizeDiv(){
@@ -255,7 +121,7 @@
         };
         //Bot object, is the receiver
         var bot = {
-            id: "AskEvaOnSccSanbot",
+            id: "AskEvaSccSanbot",
             name: "Eva"
         };
         window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
