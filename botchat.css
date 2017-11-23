@@ -121,6 +121,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
   height: 40px; }
 
 .wc-console {
+  border-radius: 30px;
   border: 5px solid #dbdee1;
   bottom: 0;
   box-sizing: border-box;
