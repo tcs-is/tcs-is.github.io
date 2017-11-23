@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  user-scalable=no" />
     <title>Ask Eva</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+    <link href="https://tcs-is.github.io/botchat.css" rel="stylesheet" />
 
     <style>
 
@@ -27,14 +27,14 @@
 	   }
         }
         
-        @media all and (orientation:landscape)  and (max-width: 1136px){
+        @media all and (orientation:landscape){
 		
             #BotChatGoesHere {
                 border: 0px solid #333;
                 float: left;
-                height: 50%;
+                height: 100%;
                 position: absolute;
-                width: 50%;
+                width: 100%;
                 bottom: 0;
                 right: 0;
                 margin: 30px;
@@ -49,27 +49,7 @@
     		right: 30px;
             }
 	 }
-	
-	 @media all and (orientation:landscape) and (min-width: 1137px){
-	     #BotChatGoesHere {
-                border: 0px solid #333;
-                float: left;
-                height: 50%;
-                position: absolute;
-                width: 50%;
-                bottom: 0;
-                right: 0;
-                margin: 30px;
-            }
-            #imagelogo{
-                top: 5%;
-    		width: 50%;
-    		height: auto;
-    		float: right;
-    		position: relative;
-    		right: 30px;
-            }
-	 }   
+	    
 	     #footer {
 		position:absolute;
 		bottom: 2px;
@@ -82,10 +62,6 @@
 <body style="overflow:hidden; margin:auto">
 	<div id="main">
     		<div id="BotChatGoesHere"></div>
-    		<div id="imagelogo">
-			<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1280px-Tata_Consultancy_Services_Logo.svg.png" alt="TCS logo" 
-			     width=100%>
-		</div>
     		<div id="footer" align="center" style="right: 0px; left: 0px;">
        			Powered by: TATA Consultancy Services
     		</div>
