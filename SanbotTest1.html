@@ -10,15 +10,7 @@
     <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
 
     <style>
-        .example {
-            margin: auto;
-            width: 100%;
-            bottom: 100px;
-        }
-        .example>h2 {
-            font-family: 'Segoe UI';
-        }  
-	    
+
         @media all and (orientation:portrait){
 		
             #BotChatGoesHere {
@@ -29,6 +21,7 @@
                 bottom: 3%;
                 margin: auto;
             }
+		
             #imagelogo{
 		display:none;
 	   }
@@ -46,6 +39,7 @@
                 right: 0;
                 margin: 30px;
             }
+            
             #imagelogo{
                 top: 5%;
     		width: 50%;
@@ -54,7 +48,6 @@
     		position: relative;
     		right: 30px;
             }
-		
 	 }
 	
 	 @media all and (orientation:landscape) and (min-width: 1137px){
@@ -68,7 +61,6 @@
                 right: 0;
                 margin: 30px;
             }
-            
             #imagelogo{
                 top: 5%;
     		width: 50%;
@@ -102,6 +94,7 @@
     <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
 <!--     <script src="./chatbot.js"></script> -->
     <script src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 	
    <script language="javascript">
         function autoResizeDiv(){
@@ -137,9 +130,9 @@
 		    })
 	}
 
-        //Connecting with the AskEva BotService
+        //Connecting with the AskEvaSccSanbot BotService
         var botConnection = new BotChat.DirectLine({
-            secret: '8bJOQpyluX8.cwA.-bY.qdL8vNmzmCvnQ4cyfwaXCGmqwWt-waFaf8O1C5G7ios',
+            secret: 'QHRH6D52w4Q.cwA.JUk.gzImodcbBHNtAqqH5hKOLRjx2YUH6flQdxaK1NzYw94',
             webSocket: params['webSocket'] && params['webSocket'] === 'true' // defaults to true
         });
         //Instantiating the BotChat application
