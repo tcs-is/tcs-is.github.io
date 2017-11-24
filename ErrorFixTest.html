@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  user-scalable=no" />
+    <title>Ask Eva</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://tcs-is.github.io/botchat.css" rel="stylesheet" />
+
+    <style>
+        
+        @media all and (orientation:landscape){
+		
+            #BotChatGoesHere {
+                border: 0px solid #333;
+                float: left;
+                height: 100%;
+                position: absolute;
+                width: 100%;
+                bottom: 0;
+                right: 0;
+                margin-right: 0px;
+		margin-top: 30px;
+		margin-bottom: 30px;
+		margin-left: 0px;
+            }
+            
+            #imagelogo{
+                top: 5%;
+    		width: 50%;
+    		height: auto;
+    		float: right;
+    		position: relative;
+    		right: 30px;
+            }
+	 }
+	    
+	     #footer {
+		position:absolute;
+		bottom: 2px;
+		color: blue;
+		margin: auto;
+           }
+	    
+	    .wc-message-wrapper,.wc-console{
+	    	margin-right: 30px;
+		margin-left: 30px;
+	    }
+    </style>
+</head>
+
+<body style="overflow:hidden; margin:auto">
+	<div id="main">
+    		<div id="BotChatGoesHere"></div>
+    		<div id="footer" align="center" style="right: 0px; left: 0px;">
+       			Powered by: TATA Consultancy Services
+    		</div>
+	</div>
+	<script>
+  window.onerror = function (errorMsg, url, lineNumber, column, errorObj) {
+        if (errorMsg.indexOf('Script error.') > -1) {
+            return;
+        }
+  
+  </script>
+    <script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+<!--     <script src="./chatbot.js"></script> -->
+    <script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/CognitiveServices.js"></script>
+    <script crossorigin="anonymous" type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	
+   <script language="javascript">
+        function autoResizeDiv(){
+            document.getElementById('main').style.height = window.innerHeight +'px';
+        }
+        window.onresize = autoResizeDiv;
+        autoResizeDiv();
+    </script>
+	
+    <script>
+        var canListen = true; //this object will be used to toggle mic. if CanListen is true, turn on; else turn off.
+        var params = BotChat.queryParams(location.search);
+        //User object, is the sender
+        var user = {
+            id: params['userid'] || 'userid',
+            name: params['username'] || 'You'
+        };
+        //Bot object, is the receiver
+        var bot = {
+            id: "AskEvaSccSanbot",
+            name: "Eva"
+        };
+        window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
+	    
+        //SpeechOptions has a speechRecognizer and a SpeechSynthesizer.
+        //For the current situation, we are not using SpeechSynthesizer. For example please refer to #1 below.
+	//new API Key 1: d44642f7a76940c2abeb8f7d9ce0b008
+	//new API Key 2: f0345fd1d08a49eda26cafc0a25e3c67
+	//old API Key: 969780dbeab8445fb8dc405016a315e2
+        var speechOptions = {
+		speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: 'd44642f7a76940c2abeb8f7d9ce0b008' }),
+		speechSynthesizer: new CognitiveServices.SpeechSynthesizer({
+		    subscriptionKey: 'f0345fd1d08a49eda26cafc0a25e3c67',
+		    gender: CognitiveServices.SynthesisGender.Female,
+		    voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
+		    })
+	}
+
+        //Connecting with the AskEvaSccSanbot BotService
+        var botConnection = new BotChat.DirectLine({
+            secret: 'QHRH6D52w4Q.cwA.JUk.gzImodcbBHNtAqqH5hKOLRjx2YUH6flQdxaK1NzYw94',
+            webSocket: params['webSocket'] && params['webSocket'] === 'true' // defaults to true
+        });
+        //Instantiating the BotChat application
+        BotChat.App({
+            bot: bot,
+            botConnection: botConnection,
+            // locale: 'es-es', // override locale to Spanish
+            user: user,
+            speechOptions: speechOptions
+        }, document.getElementById('BotChatGoesHere'));
+	    
+        //Listening on the any activity happening with the chat such as message send/received.
+        botConnection.activity$
+            .filter(function (activity) {
+                return activity.from.id == bot.id;
+            })
+            .subscribe(function (activity) {
+            });
+        
+        //Every eight second, check if we can turn the mic on.
+        setInterval(function () {
+            //Set the auto voice recognisation to false.
+            //If you want to turn on, replace 'false' to 'canListen'
+            if (!speechOptions.speechSynthesizer._isPlaying && !speechOptions.speechRecognizer.isStreamingToService) {
+                $('.wc-mic.inactive').trigger("click");
+            }
+        }, 10000);
+	    
+	//This is a helper method to send a message as a Bot.
+	function postButtonMessage() {
+            botConnection
+                .postActivity({
+                    from: { id: 'me' },
+                    name: 'buttonClicked',
+                    type: 'event',
+                    value: ''
+                })
+                .subscribe(function (id) {
+                    console.log('"buttonClicked" sent');
+                });
+        };
+    </script>
+   
+</body>
+</html>
+<!--
+Note:
+#1: 
+var speechOptions = {
+speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
+speechSynthesizer: new CognitiveServices.SpeechSynthesizer({
+    subscriptionKey: '969780dbeab8445fb8dc405016a315e2',
+    gender: CognitiveServices.SynthesisGender.Female,
+    voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
+    })
+}
+//Bot listening for inbound backchannel events - in this case it only listens for events named "buttonClicked"  
+bot.on("event", function (event) {
+    var msg = new builder.Message().address(event.address);
+    msg.textLocale("en-us");
+    if (event.name === "buttonClicked") {
+        msg.text("I see that you just pushed that button");
+    }
+    bot.send(msg);
+})
+//Creates a backchannel event
+var createEvent = (eventName, value, address) => {
+    var msg = new builder.Message().address(address);
+    msg.data.type = "event";
+    msg.data.name = eventName;
+    msg.data.value = value;
+    return msg;
+}
+->
