@@ -89,10 +89,13 @@
 	    
         //SpeechOptions has a speechRecognizer and a SpeechSynthesizer.
         //For the current situation, we are not using SpeechSynthesizer. For example please refer to #1 below.
+	//new API Key 1: d44642f7a76940c2abeb8f7d9ce0b008
+	//new API Key 2: f0345fd1d08a49eda26cafc0a25e3c67
+	//old API Key: 969780dbeab8445fb8dc405016a315e2
         var speechOptions = {
-		speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
+		speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: 'd44642f7a76940c2abeb8f7d9ce0b008' }),
 		speechSynthesizer: new CognitiveServices.SpeechSynthesizer({
-		    subscriptionKey: '969780dbeab8445fb8dc405016a315e2',
+		    subscriptionKey: 'f0345fd1d08a49eda26cafc0a25e3c67',
 		    gender: CognitiveServices.SynthesisGender.Female,
 		    voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
 		    })
