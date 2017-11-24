@@ -118,23 +118,23 @@
                 return activity.from.id == bot.id;
             })
             .subscribe(function (activity) {
-                   var msg = activity.text;
-                   var detectNumbers = msg.split(' ');
-                   var newMsg = [];
-                   detectNumbers.forEach((el) => {
-                   if(!isNaN(el)){
-                        var newEl = '';
-                        for(var i=0; i<el.length; i++){
-                            newEl += el[i]+' ';
-                        }
-                        el = newEl;
-                    }
-                    newMsg.push(el);
-                });
-                console.log(newMsg);
-                var message = newMsg.join(' ');
-                console.log(message);
-                canListen = false;
+//                    var msg = activity.text;
+//                    var detectNumbers = msg.split(' ');
+//                    var newMsg = [];
+//                    detectNumbers.forEach((el) => {
+//                    if(!isNaN(el)){
+//                         var newEl = '';
+//                         for(var i=0; i<el.length; i++){
+//                             newEl += el[i]+' ';
+//                         }
+//                         el = newEl;
+//                     }
+//                     newMsg.push(el);
+//                 });
+//                 console.log(newMsg);
+//                 var message = newMsg.join(' ');
+//                 console.log(message);
+//                 canListen = false;
             });
         
         //Every eight second, check if we can turn the mic on.
