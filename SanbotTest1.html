@@ -121,13 +121,9 @@
                 return activity.from.id == bot.id;
             })
             .subscribe(function (activity) {
-			var msg = activity.text;
-		
+		var msg = activity.text;
                    var detectNumbers = msg.split(' ');
-		console.log("Results for detectNumbers: "+detectNumbers);
                    var newMsg = [];
-		
-		//if(detectNumbers.length>3){
                    detectNumbers.forEach((el) => {
                    if(!isNaN(el)){
                         var newEl = '';
@@ -140,9 +136,10 @@
                 });
                 console.log(newMsg);
                 var message = newMsg.join(' ');
-		//}
                 console.log(message);
                 canListen = false;
+                web.addMessage(message, "", "", "");
+                web.processMessages();
             });
         
         //Every eight second, check if we can turn the mic on.
