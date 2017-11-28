@@ -122,7 +122,7 @@
             })
             .subscribe(function (activity) {
 			var msg = activity.text;
-		if(msg.length>4){
+		if(msg.length>3){
                    var detectNumbers = msg.split(' ');
                    var newMsg = [];
                    detectNumbers.forEach((el) => {
