@@ -114,14 +114,13 @@
             user: user,
             speechOptions: speechOptions
         }, document.getElementById('BotChatGoesHere'));
-	    
         //Listening on the any activity happening with the chat such as message send/received.
         botConnection.activity$
             .filter(function (activity) {
                 return activity.from.id == bot.id;
             })
             .subscribe(function (activity) {
-		var msg = activity.text;
+                   var msg = activity.text;
                    var detectNumbers = msg.split(' ');
                    var newMsg = [];
                    detectNumbers.forEach((el) => {
