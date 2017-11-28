@@ -127,6 +127,7 @@
 		console.log("Results for detectNumbers: "+detectNumbers);
                    var newMsg = [];
 		
+		if(detectNumbers.length>3){
                    detectNumbers.forEach((el) => {
                    if(!isNaN(el)){
                         var newEl = '';
@@ -139,7 +140,7 @@
                 });
                 console.log(newMsg);
                 var message = newMsg.join(' ');
-		
+		}
                 console.log(message);
                 canListen = false;
             });
