@@ -144,7 +144,7 @@
         setInterval(function () {
             //Set the auto voice recognisation to false.
             //If you want to turn on, replace 'false' to 'canListen'
-            if (!speechOptions.speechSynthesizer._isPlaying && !speechOptions.speechRecognizer.isStreamingToService) {
+            if (!speechOptions.speechSynthesizer._isPlaying && !speechOptions.speechRecognizer.isStreamingToService && canListen) {
                 $('.wc-mic.inactive').trigger("click");
             }
         }, 10000);
