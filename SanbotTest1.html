@@ -133,12 +133,11 @@
                     }
                     newMsg.push(el);
                 });
-                console.log(newMsg);
+                console.log("Result for message split by space : "+newMsg);
                 var message = newMsg.join(' ');
-                console.log(message);
+                console.log("Result for final message being read (separated numbers): "+message);
+		activity.text=message;
                 canListen = false;
-                web.addMessage(message, "", "", "");
-                web.processMessages();
             });
         
         //Every eight second, check if we can turn the mic on.
