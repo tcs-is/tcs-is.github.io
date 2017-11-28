@@ -83,7 +83,7 @@ Powered by: TATA Consultancy Services
         web.processMessages();
     </script>
     <script>
-        var canListen = true; //this object will be used to toggle mic. is CanListen is true, turn on; else turn off.
+        var canListen = false; //this object will be used to toggle mic. is CanListen is true, turn on; else turn off.
         var params = BotChat.queryParams(location.search);
         //User object, is the sender
         var user = {
@@ -92,7 +92,7 @@ Powered by: TATA Consultancy Services
         };
         //Bot object, is the receiver
         var bot = {
-            id: "TestBot101117qna5",
+            id: "SCCSanbot",
             name: "Eva"
         };
         window['botchatDebug'] = params['debug'] && params['debug'] === 'true';
