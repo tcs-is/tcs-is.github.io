@@ -122,8 +122,9 @@
             })
             .subscribe(function (activity) {
 			var msg = activity.text;
-		if(msg.length>3){
+		
                    var detectNumbers = msg.split(' ');
+		console.log(detectNumbers);
                    var newMsg = [];
                    detectNumbers.forEach((el) => {
                    if(!isNaN(el)){
@@ -137,7 +138,7 @@
                 });
                 console.log(newMsg);
                 var message = newMsg.join(' ');
-		}
+		
                 console.log(message);
                 canListen = false;
             });
