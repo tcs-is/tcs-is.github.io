@@ -124,8 +124,9 @@
 			var msg = activity.text;
 		
                    var detectNumbers = msg.split(' ');
-		console.log(detectNumbers);
+		console.log("Results for detectNumbers: "+detectNumbers);
                    var newMsg = [];
+		
                    detectNumbers.forEach((el) => {
                    if(!isNaN(el)){
                         var newEl = '';
