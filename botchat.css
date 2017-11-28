@@ -1,3 +1,12 @@
+/* new */
+.wc-card wc-adaptive-card hero{
+  border-radius: 15px;
+}
+
+.ac-pushButton{
+  border-radius: 15px;
+}
+
 /* reset */
 body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
   font-family: "Segoe UI", sans-serif;
