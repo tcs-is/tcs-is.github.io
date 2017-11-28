@@ -120,6 +120,7 @@
                 return activity.from.id == bot.id;
             })
             .subscribe(function (activity) {
+		console.log("Printing result of activity: "+activity);
                    var msg = activity.text;
                    var detectNumbers = msg.split(' ');
                    var newMsg = [];
@@ -134,9 +135,10 @@
                     newMsg.push(el);
                 });
                 console.log("Result for message split by space : "+newMsg);
-                var message = newMsg.join(' ');
-                console.log("Result for final message being read (separated numbers): "+message);
 		activity.text=message;
+                var message = newMsg.join(' ');
+                console.log("Result for final message being read (separated numbers): "+activity.text);
+		
                 canListen = false;
             });
         
