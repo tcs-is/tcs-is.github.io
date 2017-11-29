@@ -315,7 +315,7 @@
                    var detectNumbers = msg.split(' ');
                    var newMsg = [];
                    detectNumbers.forEach((el) => {
-                   if(!isNaN(el)){
+                   if((!isNaN(el)) && (e1.length>3)){
                         var newEl = '';
                         for(var i=0; i<el.length; i++){
                             newEl += el[i]+' ';
