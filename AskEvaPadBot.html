@@ -315,7 +315,7 @@
                    var detectNumbers = msg.split(' ');
                    var newMsg = [];
 			for(var word=0; word <= detectNumbers.length; word++){
-				if(!isNaN(word)){
+				if(!isNaN(detectNumbers[word])){
 				   var newWord = '';
 				   for(var i=0; i<word.length;i++){
 					newWord += word[i]+' ';
