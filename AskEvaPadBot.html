@@ -321,12 +321,17 @@
                             newEl += el[i]+' ';
                         }
                         el = newEl;
-                    }
-		if(e1=="°C"){
-			e1 = "degree celsius";
-		}
+		   }
                     newMsg.push(el);
                 });
+		
+		detectNumbers.forEach((el) => {
+                   if(e1=="°C"){
+                        el = "degree celsius;
+		   }
+                    newMsg.push(el);
+                });
+		
                 console.log(newMsg);
                 var message = newMsg.join(' ');
                 console.log(message);
