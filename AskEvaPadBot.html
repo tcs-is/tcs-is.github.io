@@ -314,8 +314,9 @@
                    var msg = activity.text;
                    var detectNumbers = msg.split(' ');
                    var newMsg = [];
-			var e1 = [];
+			
 			for(var word=0; word <= detectNumbers.length; word++){
+				var e1 = [];
 				console.log(detectNumbers[word]);
 				if(!isNaN(detectNumbers[word])){
 				   var newWord = '';
