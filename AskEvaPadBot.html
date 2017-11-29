@@ -314,18 +314,26 @@
                    var msg = activity.text;
                    var detectNumbers = msg.split(' ');
                    var newMsg = [];
-                   detectNumbers.forEach((el) => {
-                   if(!isNaN(el)){
-			if(e1.length>3){
-                        var newEl = '';
-                        for(var i=0; i<el.length; i++){
-                            newEl += el[i]+' ';
-                        }
-                        el = newEl;
-			}
-                    }
-                    newMsg.push(el);
-                });
+			for(var word=0; word <= detectNumbers.length; word++){
+				if((!NaN(word) && word.length>3){
+				   var newWord = '';
+				   for(var i=0; i<word.length;i++){
+					newE1 += word[i]+' ';
+				}
+				e1=newE1;
+				}
+			newMsg.push(word);
+			});	
+//                    detectNumbers.forEach((el) => {
+//                    if(!isNaN(el)){
+//                         var newEl = '';
+//                         for(var i=0; i<el.length; i++){
+//                             newEl += el[i]+' ';
+//                         }
+//                         el = newEl;
+// 			}
+//                     newMsg.push(el);
+//                 });
                 console.log(newMsg);
                 var message = newMsg.join(' ');
                 console.log(message);
