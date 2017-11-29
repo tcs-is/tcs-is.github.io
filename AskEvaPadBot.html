@@ -326,10 +326,12 @@
                 });
 		
 		detectNumbers.forEach((el) => {
-                   if(e1=="°C"){
+		if(isNaN(el)){
+                   if((e1)=="°C"){
                         el = "degree celsius";
 		   }
                     newMsg.push(el);
+		}
                 });
 		
                 console.log(newMsg);
