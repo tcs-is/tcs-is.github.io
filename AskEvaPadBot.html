@@ -326,10 +326,12 @@
 				}
 				e1=newWord;
 					newMsg.push(e1);
+					var message = newMsg.join(' ');
 				}
 				else{
 					e1=detectNumbers[word];
 					newMsg.push(e1);
+					var message = newMsg.join(' ');
 				}
 			//newMsg.push(e1);
 			};	
@@ -344,7 +346,7 @@
 //                     newMsg.push(el);
 //                 });
                 //console.log(newMsg);
-                var message = newMsg.join(' ');
+                //var message = newMsg.join(' ');
                 console.log(message);
                 canListen = false;
                 web.addMessage(message, "", "", "");
