@@ -318,7 +318,8 @@
 			for(var word=0; word <= detectNumbers.length; word++){
 				var e1 = [];
 				//console.log(detectNumbers[word]);
-				if((detectNumbers[word]).match(/[0-9]/g)){
+				var patt1 = /[1-4]/g;
+				if((detectNumbers[word]).match(patt1)){
 				   var newWord = '';
 				   for(var i=0; i<detectNumbers.length;i++){
 					newWord += detectNumbers[i]+' ';
