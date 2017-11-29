@@ -311,6 +311,8 @@
 //                 });
 //                 message = detectNumbers.join(' ');
 //                 console.log(message);
+		
+		//attempt wip//
                    var msg = activity.text;
                    var detectNumbers = msg.split(' ');
                    var newMsg = [];
@@ -334,18 +336,21 @@
 					newMsg.push(e1);
 					var message = newMsg.join(' ');
 				}
+				
+			//end of attempt wip
+				
 			//newMsg.push(e1);
 			};	
-//                    detectNumbers.forEach((el) => {
-//                    if(!isNaN(el)){
-//                         var newEl = '';
-//                         for(var i=0; i<el.length; i++){
-//                             newEl += el[i]+' ';
-//                         }
-//                         el = newEl;
-// 			}
-//                     newMsg.push(el);
-//                 });
+                   detectNumbers.forEach((el) => {
+                   if(!isNaN(el)){
+                        var newEl = '';
+                        for(var i=0; i<el.length; i++){
+                            newEl += el[i]+' ';
+                        }
+                        el = newEl;
+			}
+                    newMsg.push(el);
+                });
                 console.log(newMsg);
                 //var message = newMsg.join(' ');
                 console.log(message);
