@@ -318,12 +318,12 @@
 			for(var word=0; word <= detectNumbers.length; word++){
 				var e1 = [];
 				//console.log(detectNumbers[word]);
-				if(!isNaN(detectNumbers[word])){
+				if((detectNumbers[word])/[0-9]/g){
 				   var newWord = '';
 				   for(var i=0; i<detectNumbers.length;i++){
 					newWord += detectNumbers[i]+' ';
 					   console.log("Results for newWord: "+newWord);
-				}
+					}
 					e1=newWord;
 					newMsg.push(e1);
 					var message = newMsg.join(' ');
