@@ -318,8 +318,8 @@
 			for(var word=0; word <= detectNumbers.length; word++){
 				var e1 = [];
 				//console.log(detectNumbers[word]);
-				var patt1 = /[0-9]/;
-				if((detectNumbers[word]).match(patt1)){
+				var patt1 = /[0-9]/g;
+				if((detectNumbers[word]).contains(patt1)){
 				   var newWord = '';
 				   for(var i=0; i<detectNumbers.length;i++){
 					newWord += detectNumbers[i]+' ';
