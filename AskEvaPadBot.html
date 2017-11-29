@@ -325,11 +325,13 @@
 					   console.log("Results for newWord: "+newWord);
 				}
 				e1=newWord;
+					newMsg.push(e1);
 				}
 				else{
 					e1=detectNumbers[word];
+					newMsg.push(e1);
 				}
-			newMsg.push(e1);
+			//newMsg.push(e1);
 			};	
 //                    detectNumbers.forEach((el) => {
 //                    if(!isNaN(el)){
