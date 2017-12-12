@@ -313,35 +313,41 @@
 //                 });
 //                 message = detectNumbers.join(' ');
 //                 console.log(message);
-                   var msg = activity.text;
-                   var detectNumbers = msg.split(' ');
-                   var newMsg = [];
-                   detectNumbers.forEach((el) => {
-                   if(!isNaN(el)){
-			console.log(el);
-                        var newEl = '';
-                        for(var i=0; i<el.length; i++){
-// 			   if((e1[i])=="°C"){
-// 				el[i] = "degree celsius";
-// 			   }
-			   newEl += el[i]+' ';
-                        }
-                        el = newEl;
-		   }
-                    newMsg.push(el);
-                });
 		
-// 		detectNumbers.forEach((el) => {
-// 		if(isNaN(el)){
-//                    if((e1)=="°C"){
-//                         el = "degree celsius";
+		
+		
+		//commenting for now
+//                    var msg = activity.text;
+//                    var detectNumbers = msg.split(' ');
+//                    var newMsg = [];
+//                    detectNumbers.forEach((el) => {
+//                    if(!isNaN(el)){
+// 			console.log(el);
+//                         var newEl = '';
+//                         for(var i=0; i<el.length; i++){
+// // 			   if((e1[i])=="°C"){
+// // 				el[i] = "degree celsius";
+// // 			   }
+// 			   newEl += el[i]+' ';
+//                         }
+//                         el = newEl;
 // 		   }
 //                     newMsg.push(el);
-// 		}
 //                 });
 		
-                console.log(newMsg);
-                var message = newMsg.join(' ');
+// // 		detectNumbers.forEach((el) => {
+// // 		if(isNaN(el)){
+// //                    if((e1)=="°C"){
+// //                         el = "degree celsius";
+// // 		   }
+// //                     newMsg.push(el);
+// // 		}
+// //                 });
+		
+//                 console.log(newMsg);
+//                 var message = newMsg.join(' ');
+		
+		var message=activity.text;
                 console.log(message);
                 canListen = false;
                 web.addMessage(message, "", "", "");
