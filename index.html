@@ -156,14 +156,14 @@ Powered by: TATA Consultancy Services
                 var message = newMsg.join(' ');
                 console.log(message);
                 canListen = false;
-                web.addMessage(message, "", "", "");
+                web.addMessage(message, "1000", "9011", "");
                 web.processMessages();
             });
         //This is a helper method to send a message as a Bot.
         function postButtonMessage() {
             botConnection
                 .postActivity({
-                    from: { id: 'me' },
+                    from: { id: 'me', key: "passcode" },
                     name: 'buttonClicked',
                     type: 'event',
                     value: ''
@@ -179,7 +179,7 @@ Powered by: TATA Consultancy Services
             if (canListen) {
                 $('.wc-mic.inactive').trigger("click");
             }
-        }, 8000);
+        }, 5000);
     </script>
    
 </body>
