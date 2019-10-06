@@ -156,14 +156,14 @@ Powered by: TATA Consultancy Services
                 var message = newMsg.join(' ');
                 console.log(message);
                 canListen = false;
-                web.addMessage(message, "", "", "");
+                web.addMessage(message, "1000", "9011", "");
                 web.processMessages();
             });
         //This is a helper method to send a message as a Bot.
         function postButtonMessage() {
             botConnection
                 .postActivity({
-                    from: { id: 'me' },
+                    from: { id: 'me', key: "passcode" },
                     name: 'buttonClicked',
                     type: 'event',
                     value: ''
@@ -179,19 +179,8 @@ Powered by: TATA Consultancy Services
             if (canListen) {
                 $('.wc-mic.inactive').trigger("click");
             }
-        }, 8000);
+        }, 5000);
     </script>
    
 </body>
 </html>
-<!--
-Note:
-#1: 
-var speechOptions = {
-speechRecognizer: new CognitiveServices.SpeechRecognizer({ subscriptionKey: '969780dbeab8445fb8dc405016a315e2' }),
-speechSynthesizer: new CognitiveServices.SpeechSynthesizer({
-    subscriptionKey: '969780dbeab8445fb8dc405016a315e2',
-    gender: CognitiveServices.SynthesisGender.Female,
-    voiceName: 'Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'
-    })
-} ->
